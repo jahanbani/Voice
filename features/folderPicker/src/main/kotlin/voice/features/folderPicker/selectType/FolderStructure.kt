@@ -1,19 +1,21 @@
 package voice.features.folderPicker.selectType
 
 import voice.core.data.audioFileCount
+import voice.core.data.folders.discoverAudiobooks
+import voice.core.data.folders.isBookPartFolder
 import voice.core.data.isAudioFile
 import voice.core.documentfile.CachedDocumentFile
 import voice.core.documentfile.nameWithoutExtension
 
 /**
- * Guesses how the books in this folder are organized, looking at its first two levels:
+ * Guesses how the books in this folder are organized, including nested collections:
  * - Only folders like "CD 1" and "CD 2", or mostly loose chapter files: one book.
  * - Mostly folders that hold further book folders: authors (or series) with their books.
  * - Otherwise: a library where every folder or audiobook file is a book.
  */
 internal fun CachedDocumentFile.guessFolderMode(): FolderMode {
   val folders = audioFolders()
-  if (folders.isNotEmpty() && folders.all { it.isPartFolder() }) {
+  if (folders.isNotEmpty() && folders.all { it.isBookPartFolder() }) {
     return FolderMode.SingleBook
   }
   val (wholeBooks, looseChapters) = children
@@ -23,7 +25,9 @@ internal fun CachedDocumentFile.guessFolderMode(): FolderMode {
     return FolderMode.SingleBook
   }
   val authorFolders = folders.count { it.looksLikeAuthor() }
-  return if (authorFolders * 2 > folders.size) FolderMode.Authors else FolderMode.Audiobooks
+  val mode = if (authorFolders * 2 > folders.size) FolderMode.Authors else FolderMode.Audiobooks
+  val automatic = discoverAudiobooks().map { it.uri }.toSet()
+  return if (automatic != books(mode).map { it.file.uri }.toSet()) FolderMode.Automatic else mode
 }
 
 /**
@@ -31,6 +35,7 @@ internal fun CachedDocumentFile.guessFolderMode(): FolderMode {
  */
 internal fun CachedDocumentFile.books(mode: FolderMode): List<FolderBook> {
   return when (mode) {
+    FolderMode.Automatic -> discoverAudiobooks().map { it.toFolderBook(author = null) }
     FolderMode.SingleBook -> listOf(toFolderBook(author = null))
     FolderMode.Audiobooks -> children.map { it.toFolderBook(author = null) }
     FolderMode.Authors -> children.flatMap { author ->
@@ -53,7 +58,7 @@ internal class FolderBook(
 )
 
 private fun CachedDocumentFile.toFolderBook(author: String?): FolderBook {
-  val (parts, books) = audioFolders().partition { it.isPartFolder() }
+  val (parts, books) = audioFolders().partition { it.isBookPartFolder() }
   return FolderBook(
     file = this,
     book = SelectFolderTypeViewState.Book(
@@ -73,18 +78,11 @@ private fun CachedDocumentFile.audioFolders(): List<CachedDocumentFile> {
 
 // an author folder only holds book folders
 private fun CachedDocumentFile.looksLikeAuthor(): Boolean {
-  return children.none { it.isAudioFile() } && audioFolders().any { !it.isPartFolder() }
+  return children.none { it.isAudioFile() } && audioFolders().any { !it.isBookPartFolder() }
 }
 
 private fun CachedDocumentFile.looksLikeWholeBook(): Boolean {
   return name.orEmpty().endsWith(".m4b", ignoreCase = true) || length > WHOLE_BOOK_MIN_BYTES
 }
-
-private fun CachedDocumentFile.isPartFolder(): Boolean = partFolderName.matches(name.orEmpty().trim())
-
-// "CD 1", "Disc 02", "My Book - CD2", "Part 3", "Teil 1", "Vol. 2" or just "01"
-private val partFolderName = Regex(
-  """(?i)^((.*[\s._-])?(cd|disc|disk|tape|side)|part|teil|vol\.?|volume)?[\s._-]*\d{1,3}$""",
-)
 
 private const val WHOLE_BOOK_MIN_BYTES = 200_000_000L

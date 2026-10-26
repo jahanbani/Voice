@@ -37,6 +37,13 @@ internal class AuthorAudiobookFoldersStore(store: DataStore<Set<Uri>>) : DataSto
   constructor(factory: VoiceDataStoreFactory) : this(factory.createUriSet("AuthorAudiobookFolders"))
 }
 
+@SingleIn(AppScope::class)
+internal class AutomaticAudiobookFoldersStore(store: DataStore<Set<Uri>>) : DataStore<Set<Uri>> by store {
+
+  @Inject
+  constructor(factory: VoiceDataStoreFactory) : this(factory.createUriSet("AutomaticAudiobookFolders"))
+}
+
 private fun VoiceDataStoreFactory.createUriSet(name: String): DataStore<Set<Uri>> = create(
   serializer = SetSerializer(UriSerializer),
   fileName = name,

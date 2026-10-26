@@ -43,6 +43,7 @@ internal fun rememberAllowAccess(
         FolderType.SingleFolder,
         FolderType.Root,
         FolderType.Author,
+        FolderType.Automatic,
         -> {
           // the picker ignores a tree uri as the place to start
           treeLauncher.launch(DocumentsContract.buildDocumentUriUsingTree(item.id, DocumentsContract.getTreeDocumentId(item.id)))

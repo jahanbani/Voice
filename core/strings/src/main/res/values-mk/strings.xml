@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">Додајте ја вашата прва аудио книга</string>
     <string name="folder.mode.author.label">Фолдерите се автори</string>
     <string name="folder.mode.author.option">Фолдерите во %s се автори</string>
+    <string name="folder.mode.automatic.label">Автоматски</string>
+    <string name="folder.mode.automatic.option">Најди книги во %s и неговите потфолдери</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d книга</item>
         <item quantity="other">%d книги</item>

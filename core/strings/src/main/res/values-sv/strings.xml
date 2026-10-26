@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">Lägg till din första ljudbok</string>
     <string name="folder.mode.author.label">Mappar är författare</string>
     <string name="folder.mode.author.option">Mapparna i %s är författare</string>
+    <string name="folder.mode.automatic.label">Automatiskt</string>
+    <string name="folder.mode.automatic.option">Hitta böcker i %s och dess undermappar</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d bok</item>
         <item quantity="other">%d böcker</item>

@@ -31,6 +31,7 @@ class AudiobookFoldersImplTest {
     singleFolderAudiobookFoldersStore = SingleFolderAudiobookFoldersStore(stores.getValue(FolderType.SingleFolder)),
     singleFileAudiobookFoldersStore = SingleFileAudiobookFoldersStore(stores.getValue(FolderType.SingleFile)),
     authorAudiobookFoldersStore = AuthorAudiobookFoldersStore(stores.getValue(FolderType.Author)),
+    automaticAudiobookFoldersStore = AutomaticAudiobookFoldersStore(stores.getValue(FolderType.Automatic)),
     context = context,
     cachedDocumentFileFactory = mockk {
       every { create(any()) } returns mockk()
@@ -56,6 +57,7 @@ class AudiobookFoldersImplTest {
         FolderType.SingleFolder to emptySet(),
         FolderType.Root to setOf(uri),
         FolderType.Author to emptySet(),
+        FolderType.Automatic to emptySet(),
       ),
       actual = stores.mapValues { it.value.data.first() },
     )
@@ -118,6 +120,20 @@ class AudiobookFoldersImplTest {
     shadowOf(Looper.getMainLooper()).idle()
 
     assertEquals(emptyList(), folders.withoutAccess().first().getValue(FolderType.Root))
+  }
+
+  @Test
+  fun `automatic discovery is stored and replacing a fixed layout removes the old selection`() = runTest {
+    val folders = folders()
+    withAccess += uri
+    folders.add(uri, FolderType.Root)
+    shadowOf(Looper.getMainLooper()).idle()
+    folders.add(uri, FolderType.Automatic)
+    shadowOf(Looper.getMainLooper()).idle()
+
+    assertEquals(setOf(uri), stores.getValue(FolderType.Automatic).data.first())
+    assertEquals(emptySet(), stores.getValue(FolderType.Root).data.first())
+    assertEquals(listOf(uri), folders.all().first().getValue(FolderType.Automatic).map { it.uri })
   }
 
   private fun context(resolver: ContentResolver): Context = mockk {

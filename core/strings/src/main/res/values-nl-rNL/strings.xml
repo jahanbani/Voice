@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">Voeg je eerste luisterboek toe</string>
     <string name="folder.mode.author.label">Mappen zijn auteurs</string>
     <string name="folder.mode.author.option">Mappen in %s zijn auteurs</string>
+    <string name="folder.mode.automatic.label">Automatisch</string>
+    <string name="folder.mode.automatic.option">Zoek boeken in %s en de submappen</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d boek</item>
         <item quantity="other">%d boeken</item>

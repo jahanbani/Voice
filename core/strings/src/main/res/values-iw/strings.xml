@@ -161,6 +161,8 @@
     <string name="folder.add.title.onboarding">הוספת הקולספר הראשון שלכם</string>
     <string name="folder.mode.author.label">תיקיות הן מחברים</string>
     <string name="folder.mode.author.option">התיקיות ב-%s הן מחברים</string>
+    <string name="folder.mode.automatic.label">אוטומטי</string>
+    <string name="folder.mode.automatic.option">חיפוש ספרים ב-%s ובתיקיות המשנה</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d ספר</item>
         <item quantity="two">%d ספרים</item>

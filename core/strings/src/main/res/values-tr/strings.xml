@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">İlk sesli kitabınızı ekleyin</string>
     <string name="folder.mode.author.label">Klasörler yazarlardır</string>
     <string name="folder.mode.author.option">%s içindeki klasörler yazarlardır</string>
+    <string name="folder.mode.automatic.label">Otomatik</string>
+    <string name="folder.mode.automatic.option">%s ve alt klasörlerinde kitapları bul</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d kitap</item>
         <item quantity="other">%d kitap</item>

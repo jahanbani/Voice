@@ -40,6 +40,46 @@ import kotlin.time.Duration.Companion.seconds
 class MediaScannerTest {
 
   @Test
+  fun `automatic discovery scans nested books and keeps series in chapter order`() = test {
+    val library = folder("audiobooks")
+    val novel = File(library, "Collection/Author/Novel")
+    val detective = File(library, "Collection/Detective")
+    val novelChapter = audioFile(novel, "1.mp3")
+    val first = audioFile(detective, "Series 1/2.mp3")
+    val second = audioFile(detective, "Series 1/10.mp3")
+    val third = audioFile(detective, "Series 2/1.mp3")
+    val loose = audioFile(library, "Loose.mp3")
+
+    scan(FolderType.Automatic, library)
+
+    assertBookContents(
+      BookContentView(id = novel, chapters = listOf(novelChapter)),
+      BookContentView(id = detective, chapters = listOf(first, second, third)),
+      BookContentView(id = loose, chapters = listOf(loose)),
+    )
+
+    scan(FolderType.Automatic, library)
+    assertEquals(5, analyzeCalls)
+  }
+
+  @Test
+  fun `switching to automatic discovery carries progress into a nested book`() = test {
+    val library = folder("audiobooks")
+    val collection = File(library, "Collection")
+    val novel = File(collection, "Novel")
+    val chapter = audioFile(novel, "1.mp3")
+    audioFile(File(collection, "Other Novel"), "1.mp3")
+    scan(FolderType.Root, library)
+    play(BookId(collection.toUri()), chapter, position = 500, playedAt = Instant.now())
+
+    scan(FolderType.Automatic, library)
+
+    val content = bookContentRepo.get(BookId(novel.toUri()))!!
+    assertEquals(ChapterId(chapter.toUri()), content.currentChapter)
+    assertEquals(500L, content.positionInChapter)
+  }
+
+  @Test
   fun singleFileDeletion() = test {
     val audiobookFolder = folder("audiobooks")
 
