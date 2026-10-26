@@ -31,6 +31,7 @@ internal constructor(
   private val singleFolderAudiobookFoldersStore: SingleFolderAudiobookFoldersStore,
   private val singleFileAudiobookFoldersStore: SingleFileAudiobookFoldersStore,
   private val authorAudiobookFoldersStore: AuthorAudiobookFoldersStore,
+  private val automaticAudiobookFoldersStore: AutomaticAudiobookFoldersStore,
   private val context: Context,
   private val cachedDocumentFileFactory: CachedDocumentFileFactory,
   private val analytics: Analytics,
@@ -80,6 +81,7 @@ internal constructor(
       FolderType.SingleFolder,
       FolderType.Root,
       FolderType.Author,
+      FolderType.Automatic,
       -> {
         DocumentsContract.buildDocumentUriUsingTree(
           this,
@@ -154,6 +156,7 @@ internal constructor(
       FolderType.SingleFolder -> singleFolderAudiobookFoldersStore
       FolderType.Root -> rootAudioBookFoldersStore
       FolderType.Author -> authorAudiobookFoldersStore
+      FolderType.Automatic -> automaticAudiobookFoldersStore
     }
   }
 

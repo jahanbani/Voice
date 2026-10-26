@@ -96,6 +96,61 @@ class FolderStructureTest {
     assertEquals(expected = listOf("Dune"), actual = folder.books(FolderMode.Audiobooks).map { it.book.name })
   }
 
+  @Test
+  fun `mixed layouts are discovered at every depth`() {
+    val folder = folder(
+      "Loose.m4b",
+      "A Book/1.mp3",
+      "A Book/2.mp3",
+      "Radio/Novels/Emma/1.mp3",
+      "Radio/Novels/Persuasion/1.mp3",
+      "Radio/Detective/Series 1/1.mp3",
+      "Radio/Detective/Series 2/1.mp3",
+      "Radio/Standalone.m4b",
+      "Covers/cover.jpg",
+    )
+
+    assertEquals(FolderMode.Automatic, folder.guessFolderMode())
+    val books = folder.books(FolderMode.Automatic).map { it.book }.associateBy { it.name }
+    assertEquals(setOf("Loose", "A Book", "Emma", "Persuasion", "Detective", "Standalone"), books.keys)
+    assertEquals(2, books.getValue("Detective").partCount)
+    assertEquals(2, books.getValue("Detective").fileCount)
+  }
+
+  @Test
+  fun `automatic discovery keeps discs and numbered volumes together`() {
+    val folder = folder(
+      "Book/CD 1/1.mp3",
+      "Book/CD 2/1.mp3",
+      "Drama/Volume 01 (2016)/1.mp3",
+      "Drama/Volume 02 (2017)/1.mp3",
+      "Other/01/1.mp3",
+      "Other/02/1.mp3",
+      "Detective/Series 1/1.mp3",
+      "Detective/Series 8 - More adventures/1.mp3",
+    )
+
+    assertEquals(
+      listOf("Book", "Detective", "Drama", "Other"),
+      folder.books(FolderMode.Automatic).map { it.book.name }.sorted(),
+    )
+  }
+
+  @Test
+  fun `non audio folders do not split a book into separate chapters`() {
+    val folder = folder("Book/1.mp3", "Book/2.mp3", "Book/Artwork/cover.jpg", "Empty/readme.txt")
+
+    assertEquals(listOf("Book"), folder.books(FolderMode.Automatic).map { it.book.name })
+  }
+
+  @Test
+  fun `fixed depth layouts remain available for a mixed library`() {
+    val folder = folder("Radio/Author/Novel/1.mp3", "Other/1.mp3")
+
+    assertEquals(listOf("Other", "Radio"), folder.books(FolderMode.Audiobooks).map { it.book.name }.sorted())
+    assertEquals(listOf("Novel", "Other"), folder.books(FolderMode.Automatic).map { it.book.name }.sorted())
+  }
+
   private fun assertGuess(
     expected: FolderMode,
     vararg files: String,

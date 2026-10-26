@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">अपनी पहली ऑडियोबुक जोड़ें</string>
     <string name="folder.mode.author.label">फ़ोल्डर लेखक हैं</string>
     <string name="folder.mode.author.option">%s के फ़ोल्डर लेखक हैं</string>
+    <string name="folder.mode.automatic.label">स्वचालित</string>
+    <string name="folder.mode.automatic.option">%s और उसके सबफ़ोल्डर में पुस्तकें खोजें</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d पुस्तक</item>
         <item quantity="other">%d पुस्तकें</item>

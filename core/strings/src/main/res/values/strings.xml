@@ -271,6 +271,10 @@
     <string name="folder.mode.author.label">Folders are authors</string>
     <!-- Option for how books are found in a picked folder. %s is the folder name. Its subfolders are authors, their subfolders are books. -->
     <string name="folder.mode.author.option">Folders in %s are authors</string>
+    <!-- Label for discovering books in mixed, nested audiobook folders. -->
+    <string name="folder.mode.automatic.label">Automatic</string>
+    <!-- Folder layout option. %s is the selected folder name. -->
+    <string name="folder.mode.automatic.option">Find books in %s and its subfolders</string>
     <!-- Number of books an option for finding books would lead to. -->
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d book</item>

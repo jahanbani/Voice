@@ -166,6 +166,8 @@
     <string name="folder.add.title.onboarding">Pridajte si svoju prvú zvukovú knihu</string>
     <string name="folder.mode.author.label">Priečinky sú autori</string>
     <string name="folder.mode.author.option">Priečinky v %s sú autori</string>
+    <string name="folder.mode.automatic.label">Automaticky</string>
+    <string name="folder.mode.automatic.option">Nájsť knihy v priečinku %s a jeho podpriečinkoch</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d kniha</item>
         <item quantity="few">%d knihy</item>

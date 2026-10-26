@@ -26,6 +26,7 @@ internal fun FolderType.icon(): ImageVector = when (this) {
   FolderType.SingleFile -> VoiceIcons.AudioFile
   FolderType.SingleFolder -> VoiceIcons.Folder
   FolderType.Root -> VoiceIcons.LibraryBooks
+  FolderType.Automatic -> VoiceIcons.AutoAwesome
   FolderType.Author -> VoiceIcons.Person
 }
 
@@ -35,6 +36,7 @@ internal fun FolderType.label(): String {
     FolderType.SingleFile -> StringsR.string.folder_mode_file_label
     FolderType.SingleFolder -> StringsR.string.folder_mode_single_label
     FolderType.Root -> StringsR.string.folder_mode_root_label
+    FolderType.Automatic -> StringsR.string.folder_mode_automatic_label
     FolderType.Author -> StringsR.string.folder_mode_author_label
   }
   return stringResource(res)

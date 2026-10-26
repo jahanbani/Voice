@@ -186,7 +186,7 @@ private class FolderTypeStyle(
 private fun FolderType.style(): FolderTypeStyle {
   val colors = MaterialTheme.colorScheme
   return when (this) {
-    FolderType.Root -> FolderTypeStyle(
+    FolderType.Root, FolderType.Automatic -> FolderTypeStyle(
       shape = MaterialShapes.Cookie9Sided,
       color = colors.primary,
       onColor = colors.onPrimary,

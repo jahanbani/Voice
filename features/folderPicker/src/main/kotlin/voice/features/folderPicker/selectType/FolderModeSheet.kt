@@ -161,6 +161,7 @@ private fun GuessBadge() {
 private fun SelectFolderTypeViewState.Option.summary(): String {
   return when (mode) {
     FolderMode.SingleBook -> stringResource(StringsR.string.folder_mode_single_summary)
+    FolderMode.Automatic,
     FolderMode.Audiobooks,
     FolderMode.Authors,
     -> {
@@ -173,6 +174,7 @@ private fun SelectFolderTypeViewState.Option.summary(): String {
 @Composable
 internal fun FolderMode.optionTitle(folderName: String): String {
   val res = when (this) {
+    FolderMode.Automatic -> StringsR.string.folder_mode_automatic_option
     FolderMode.SingleBook -> StringsR.string.folder_mode_single_option
     FolderMode.Audiobooks -> StringsR.string.folder_mode_root_option
     FolderMode.Authors -> StringsR.string.folder_mode_author_option

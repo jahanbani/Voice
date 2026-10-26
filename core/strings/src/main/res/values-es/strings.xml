@@ -161,6 +161,8 @@
     <string name="folder.add.title.onboarding">Añade tu primer audiolibro</string>
     <string name="folder.mode.author.label">Las carpetas son autores</string>
     <string name="folder.mode.author.option">Las carpetas de %s son autores</string>
+    <string name="folder.mode.automatic.label">Automático</string>
+    <string name="folder.mode.automatic.option">Buscar libros en %s y sus subcarpetas</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d libro</item>
         <item quantity="many">%d libros</item>

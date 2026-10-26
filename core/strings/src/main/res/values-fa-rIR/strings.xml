@@ -156,6 +156,8 @@
     <string name="folder.add.title.onboarding">اولین کتاب صوتی خود را اضافه کنید</string>
     <string name="folder.mode.author.label">پوشه‌ها نویسنده هستند</string>
     <string name="folder.mode.author.option">پوشه‌های داخل %s نویسنده هستند</string>
+    <string name="folder.mode.automatic.label">خودکار</string>
+    <string name="folder.mode.automatic.option">یافتن کتاب‌ها در %s و زیرپوشه‌های آن</string>
     <plurals name="folder.mode.book_count">
         <item quantity="one">%d کتاب</item>
         <item quantity="other">%d کتاب</item>

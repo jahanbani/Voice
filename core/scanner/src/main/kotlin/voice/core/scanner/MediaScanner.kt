@@ -5,6 +5,7 @@ import voice.core.data.BookId
 import voice.core.data.audioFileCount
 import voice.core.data.fitIntoOneBook
 import voice.core.data.folders.FolderType
+import voice.core.data.folders.discoverAudiobooks
 import voice.core.data.isAudioFile
 import voice.core.data.isRemote
 import voice.core.data.repo.BookContentRepo
@@ -29,6 +30,7 @@ internal class MediaScanner(
         FolderType.SingleFile, FolderType.SingleFolder -> {
           files
         }
+        FolderType.Automatic -> files.flatMap { it.discoverAudiobooks() }
         FolderType.Root -> {
           files.flatMap { file ->
             file.children
@@ -48,7 +50,8 @@ internal class MediaScanner(
       }
     }
 
-    val bookIds = files.map { BookId(it.uri) }
+    val distinctFiles = files.distinctBy { it.uri }
+    val bookIds = distinctFiles.map { BookId(it.uri) }
     // before the books found again become active, so they can be told apart from the books still in the library
     val previousBooks = PreviousBooks(
       library = contentRepo.all().filterNot { it.id.isRemote },
@@ -65,7 +68,7 @@ internal class MediaScanner(
       }
     }
 
-    files
+    distinctFiles
       .sortedBy { it.audioFileCount() }
       .forEach { file ->
         scan(file, previousBooks)
