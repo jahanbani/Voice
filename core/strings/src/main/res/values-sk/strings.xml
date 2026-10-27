@@ -256,6 +256,7 @@
     <string name="library.category.completed.title">Vypočuté</string>
     <string name="library.category.current.title">Rozpočúvané</string>
     <string name="library.category.not_started.title">Ešte nepočúvané</string>
+    <string name="library.collection">Kolekcia</string>
     <string name="library.continue_listening">Pokračovať v počúvaní</string>
     <string name="library.empty.add_first_book">Pridajte si priečinok so zvukovými knihami, aby ste mohli začať počúvať!</string>
     <string name="library.empty.title">Nenašli sa žiadne zvukové knihy</string>

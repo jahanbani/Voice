@@ -217,6 +217,7 @@
     <string name="library.category.completed.title">已听完</string>
     <string name="library.category.current.title">在听</string>
     <string name="library.category.not_started.title">未开始</string>
+    <string name="library.collection">合集</string>
     <string name="library.continue_listening">继续收听</string>
     <string name="library.empty.add_first_book">首先添加有声书文件夹，然后就可以开始听书啦！</string>
     <string name="library.empty.title">未找到有声书</string>

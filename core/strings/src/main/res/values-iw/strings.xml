@@ -243,6 +243,7 @@
     <string name="library.category.completed.title">הושלמו</string>
     <string name="library.category.current.title">בהאזנה</string>
     <string name="library.category.not_started.title">טרם הותחלו</string>
+    <string name="library.collection">אוסף</string>
     <string name="library.continue_listening">המשך האזנה</string>
     <string name="library.empty.add_first_book">בואו נוסיף את תיקיית הקולספר שלכם כדי שתוכלו להתחיל להאזין!</string>
     <string name="library.empty.title">לא נמצאו קולספרים</string>

@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Voltooid</string>
     <string name="library.category.current.title">Huidig</string>
     <string name="library.category.not_started.title">Nog niet begonnen</string>
+    <string name="library.collection">Collectie</string>
     <string name="library.continue_listening">Verder luisteren</string>
     <string name="library.empty.add_first_book">Laten we je luisterboekmap toevoegen om te beginnen met luisteren!</string>
     <string name="library.empty.title">Geen luisterboeken gevonden</string>

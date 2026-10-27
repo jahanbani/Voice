@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">تمام‌شده</string>
     <string name="library.category.current.title">جاری</string>
     <string name="library.category.not_started.title">هنوز شروع نشده</string>
+    <string name="library.collection">مجموعه</string>
     <string name="library.continue_listening">ادامهٔ گوش دادن</string>
     <string name="library.empty.add_first_book">پوشه کتاب صوتی خود را اضافه کنید تا بتوانید شروع به گوش دادن کنید!</string>
     <string name="library.empty.title">هیچ کتاب صوتی‌ای پیدا نشد</string>

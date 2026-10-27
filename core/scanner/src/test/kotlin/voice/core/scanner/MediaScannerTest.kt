@@ -54,7 +54,8 @@ class MediaScannerTest {
 
     assertBookContents(
       BookContentView(id = novel, chapters = listOf(novelChapter)),
-      BookContentView(id = detective, chapters = listOf(first, second, third)),
+      BookContentView(id = File(detective, "Series 1"), chapters = listOf(first, second)),
+      BookContentView(id = File(detective, "Series 2"), chapters = listOf(third)),
       BookContentView(id = loose, chapters = listOf(loose)),
     )
 
@@ -77,6 +78,61 @@ class MediaScannerTest {
     val content = bookContentRepo.get(BookId(novel.toUri()))!!
     assertEquals(ChapterId(chapter.toUri()), content.currentChapter)
     assertEquals(500L, content.positionInChapter)
+  }
+
+  @Test
+  fun `series inherit the old combined book position and keep separate positions after rescanning`() = test {
+    val library = folder("library")
+    val detective = File(library, "Detective")
+    val series1 = File(detective, "Series 1")
+    val series2 = File(detective, "Series 2")
+    val first = audioFile(series1, "1.mp3")
+    val second = audioFile(series2, "1.mp3")
+    scan(FolderType.Root, library)
+    currentBookStore.updateData { BookId(detective.toUri()) }
+    play(BookId(detective.toUri()), second, 600, Instant.ofEpochSecond(20))
+    val bookmarks = listOf(first, second).map { chapter ->
+      Bookmark(
+        bookId = BookId(detective.toUri()),
+        chapterId = ChapterId(chapter.toUri()),
+        title = null,
+        time = 200,
+        addedAt = Instant.EPOCH,
+        id = Bookmark.Id.random(),
+      )
+    }
+    coEvery { bookmarkRepo.bookmarks(match { it.id == BookId(detective.toUri()) }) } returns bookmarks
+
+    scan(FolderType.Automatic, library)
+
+    assertEquals(600L, bookContentRepo.get(BookId(series2.toUri()))!!.positionInChapter)
+    assertEquals(0L, bookContentRepo.get(BookId(series1.toUri()))!!.positionInChapter)
+    assertEquals(BookId(series2.toUri()), currentBookStore.data.first())
+    val collection = collectionsStore.data.first().single()
+    assertEquals("Detective", collection.name)
+    assertEquals(listOf("Series 1", "Series 2"), collection.parts.map { it.name })
+    coVerify { bookmarkRepo.addBookmark(bookmarks[0].copy(bookId = BookId(series1.toUri()))) }
+    coVerify { bookmarkRepo.addBookmark(bookmarks[1].copy(bookId = BookId(series2.toUri()))) }
+
+    play(BookId(series1.toUri()), first, 300, Instant.ofEpochSecond(30))
+    scan(FolderType.Automatic, library)
+
+    assertEquals(600L, bookContentRepo.get(BookId(series2.toUri()))!!.positionInChapter)
+    assertEquals(300L, bookContentRepo.get(BookId(series1.toUri()))!!.positionInChapter)
+  }
+
+  @Test
+  fun `changing back to one book removes its collection entry`() = test {
+    val library = folder("library")
+    val detective = File(library, "Detective")
+    audioFile(detective, "Series 1/1.mp3")
+    audioFile(detective, "Series 2/1.mp3")
+    scan(FolderType.Automatic, library)
+    assertEquals(1, collectionsStore.data.first().size)
+
+    scan(FolderType.SingleFolder, detective)
+
+    assertEquals(emptyList(), collectionsStore.data.first())
   }
 
   @Test
@@ -659,6 +715,7 @@ class MediaScannerTest {
     val currentBookStore = MemoryDataStore<BookId?>(null)
     private val scannedRepo = ScannedBooksRecordingRepo(bookContentRepo)
     val scannedBooks: List<BookId> get() = scannedRepo.scannedBooks
+    val collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(emptyList()))
     private val scanner = MediaScanner(
       contentRepo = scannedRepo,
       chapterParser = ChapterParser(
@@ -678,6 +735,7 @@ class MediaScannerTest {
         currentBookStore = CurrentBookStore(currentBookStore),
       ),
       chapterRepo = chapterRepo,
+      collectionsStore = collectionsStore,
     )
 
     val bookRepo = BookRepositoryImpl(chapterRepo, bookContentRepo)

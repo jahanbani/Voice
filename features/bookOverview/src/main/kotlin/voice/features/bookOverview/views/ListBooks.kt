@@ -71,9 +71,9 @@ internal fun ListBookRow(
           maxLines = 2,
           overflow = TextOverflow.Ellipsis,
         )
-        if (book.author != null) {
+        if (book.collection || book.author != null) {
           Text(
-            text = book.author,
+            text = if (book.collection) stringResource(R.string.library_collection) else book.author.orEmpty(),
             style = MaterialTheme.typography.bodyMedium.bookText(),
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,

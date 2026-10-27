@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">முடித்தவை</string>
     <string name="library.category.current.title">தற்போது கேட்பவை</string>
     <string name="library.category.not_started.title">இன்னும் தொடங்கப்படவில்லை</string>
+    <string name="library.collection">தொகுப்பு</string>
     <string name="library.continue_listening">தொடர்ந்து கேளுங்கள்</string>
     <string name="library.empty.add_first_book">கேட்கத் தொடங்க, உங்கள் ஆடியோபுக் கோப்புறையைச் சேர்ப்போம்!</string>
     <string name="library.empty.title">ஆடியோபுக்குகள் எதுவும் கிடைக்கவில்லை</string>

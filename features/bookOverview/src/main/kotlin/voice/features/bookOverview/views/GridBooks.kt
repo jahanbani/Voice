@@ -19,10 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import voice.core.data.BookId
+import voice.core.strings.R
 import voice.core.ui.bookText
 import voice.features.bookOverview.overview.BookOverviewItemViewState
 import kotlin.math.roundToInt
@@ -71,9 +73,9 @@ internal fun GridBook(
       maxLines = 2,
       overflow = TextOverflow.Ellipsis,
     )
-    if (book.author != null) {
+    if (book.collection || book.author != null) {
       Text(
-        text = book.author,
+        text = if (book.collection) stringResource(R.string.library_collection) else book.author.orEmpty(),
         style = MaterialTheme.typography.labelMedium.bookText(),
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         maxLines = 1,

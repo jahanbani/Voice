@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Färdiglyssnade</string>
     <string name="library.category.current.title">Pågående</string>
     <string name="library.category.not_started.title">Inte påbörjade</string>
+    <string name="library.collection">Samling</string>
     <string name="library.continue_listening">Fortsätt lyssna</string>
     <string name="library.empty.add_first_book">Lägg till din ljudboksmapp för att börja lyssna!</string>
     <string name="library.empty.title">Inga ljudböcker hittades</string>

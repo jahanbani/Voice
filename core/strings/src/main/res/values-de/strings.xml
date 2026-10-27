@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Abgeschlossen</string>
     <string name="library.category.current.title">Aktuell</string>
     <string name="library.category.not_started.title">Neu</string>
+    <string name="library.collection">Sammlung</string>
     <string name="library.continue_listening">Weiterhören</string>
     <string name="library.empty.add_first_book">Füge Deinen Hörbuchordner hinzu, damit Du mit dem Hören beginnen kannst!</string>
     <string name="library.empty.title">Keine Hörbücher gefunden</string>

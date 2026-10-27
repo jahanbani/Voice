@@ -256,6 +256,7 @@
     <string name="library.category.completed.title">Dokončené</string>
     <string name="library.category.current.title">Aktuální</string>
     <string name="library.category.not_started.title">Nezačaté</string>
+    <string name="library.collection">Kolekce</string>
     <string name="library.continue_listening">Pokračovat v poslechu</string>
     <string name="library.empty.add_first_book">Pojďme přidat vaši složku s audioknihami ať můžete začít poslouchat!</string>
     <string name="library.empty.title">Nenašly se žádné audioknihy</string>

@@ -243,6 +243,7 @@
     <string name="library.category.completed.title">Cărți terminate</string>
     <string name="library.category.current.title">Cărți în curs</string>
     <string name="library.category.not_started.title">Cărți neîncepute încă</string>
+    <string name="library.collection">Colecție</string>
     <string name="library.continue_listening">Continuă ascultarea</string>
     <string name="library.empty.add_first_book">Adaugă directorul cu cărțile tale și poți să începi!</string>
     <string name="library.empty.title">Nu s-au găsit cărți audio</string>

@@ -243,6 +243,7 @@
     <string name="library.category.completed.title">Completat</string>
     <string name="library.category.current.title">En curs</string>
     <string name="library.category.not_started.title">No començat</string>
+    <string name="library.collection">Col·lecció</string>
     <string name="library.continue_listening">Continua escoltant</string>
     <string name="library.empty.add_first_book">Afegiu la carpeta dels vostres audiollibres per començar a escoltar!</string>
     <string name="library.empty.title">No s\'ha trobat cap audiollibre</string>
