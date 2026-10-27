@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">הפעלת %1$s</string>
     <string name="widget.shelf.title">המשך האזנה</string>
     <string name="widget.sleep_timer.stops_at">ייעצר ב-%1$s</string>
+    <string name="grouping.title">קיבוץ תיקיות</string>
+    <string name="grouping.help">בחרו תיקייה בספרייה במצב אוטומטי. באוסף, כל תיקיית משנה ישירה נשמרת כספר נפרד. קובצי השמע נשארים במקומם.</string>
+    <string name="grouping.one_book">ספר אחד</string>
+    <string name="grouping.empty">הוסיפו תיקייה במצב אוטומטי כדי לשנות את הקיבוץ שלה.</string>
+    <string name="grouping.saved">הקיבוץ נשמר. הספרייה שלכם מתעדכנת…</string>
+    <string name="backup.title">גיבוי האזנה</string>
+    <string name="backup.export">ייצוא התקדמות וסימניות</string>
+    <string name="backup.import">ייבוא התקדמות וסימניות</string>
+    <string name="backup.help">הוסיפו את אותם קובצי שמע לפני הייבוא בטלפון אחר. קובצי השמע אינם כלולים.</string>
+    <string name="backup.review">ספרים תואמים: %1$d; ספרים שדולגו: %2$d. הייבוא מחליף את מיקומי ההאזנה שלהם וממזג סימניות.</string>
+    <string name="backup.confirm">ייבוא</string>
+    <string name="backup.saved">הגיבוי נשמר</string>
+    <string name="backup.restored">ספרים שיובאו: %1$d; ספרים שדולגו: %2$d</string>
+    <string name="backup.error">לא ניתן לקרוא או לכתוב את הגיבוי הזה.</string>
+    <string name="collection.next">הבא באוסף הזה</string>
 </resources>

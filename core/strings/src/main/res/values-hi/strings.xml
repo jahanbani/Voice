@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">%1$s चलाएँ</string>
     <string name="widget.shelf.title">सुनना जारी रखें</string>
     <string name="widget.sleep_timer.stops_at">%1$s बजे रुकेगा</string>
+    <string name="grouping.title">फ़ोल्डर समूहीकरण</string>
+    <string name="grouping.help">स्वचालित मोड वाली लाइब्रेरी में कोई फ़ोल्डर चुनें। संग्रह में हर सीधे सबफ़ोल्डर को अलग पुस्तक माना जाता है। ऑडियो फ़ाइलें अपनी जगह रहती हैं।</string>
+    <string name="grouping.one_book">एक पुस्तक</string>
+    <string name="grouping.empty">समूहीकरण बदलने के लिए स्वचालित मोड में फ़ोल्डर जोड़ें।</string>
+    <string name="grouping.saved">समूहीकरण सहेजा गया। आपकी लाइब्रेरी अपडेट हो रही है…</string>
+    <string name="backup.title">सुनने का बैकअप</string>
+    <string name="backup.export">प्रगति और बुकमार्क निर्यात करें</string>
+    <string name="backup.import">प्रगति और बुकमार्क आयात करें</string>
+    <string name="backup.help">दूसरे फ़ोन पर आयात करने से पहले वही ऑडियो फ़ाइलें जोड़ें। ऑडियो फ़ाइलें बैकअप में शामिल नहीं हैं।</string>
+    <string name="backup.review">मेल खाने वाली पुस्तकें: %1$d; छोड़ी गईं: %2$d। आयात करने से इन पुस्तकों में सुनने की स्थितियाँ बदल जाएँगी और बुकमार्क मिल जाएँगे।</string>
+    <string name="backup.confirm">आयात करें</string>
+    <string name="backup.saved">बैकअप सहेजा गया</string>
+    <string name="backup.restored">आयात की गई पुस्तकें: %1$d; छोड़ी गईं: %2$d</string>
+    <string name="backup.error">यह बैकअप पढ़ा या लिखा नहीं जा सका।</string>
+    <string name="collection.next">इस संग्रह में अगली पुस्तक</string>
 </resources>

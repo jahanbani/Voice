@@ -13,42 +13,59 @@ public data class DiscoveredLibrary(
   val collections: List<BookCollection>,
 )
 
-public fun CachedDocumentFile.discoverLibrary(): DiscoveredLibrary {
+public fun CachedDocumentFile.discoverLibrary(grouping: Map<String, FolderGrouping> = emptyMap()): DiscoveredLibrary {
   val collections = mutableListOf<BookCollection>()
-  val books = discoverAudiobooks().flatMap { book ->
-    val children = book.children
-    val parts = children.filter { it.isDirectory && it.discoverBookOrCollection().isNotEmpty() }
-    if (parts.size > 1 && parts.all { seriesFolderName.matches(it.name.orEmpty().trim()) } &&
-      children.none { it.isAudioFile() }
-    ) {
+  fun collect(
+    folder: CachedDocumentFile,
+    parts: List<CachedDocumentFile>,
+  ): List<CachedDocumentFile> {
+    if (parts.isNotEmpty()) {
       val ordered = parts.sortedWith(compareBy(NaturalOrderComparator.stringComparator) { it.name.orEmpty() })
       collections += BookCollection(
-        id = BookId(book.uri),
-        name = book.nameWithoutExtension(),
+        id = BookId(folder.uri),
+        name = folder.nameWithoutExtension(),
         parts = ordered.map { BookCollectionPart(BookId(it.uri), it.nameWithoutExtension()) },
       )
-      ordered
-    } else {
-      listOf(book)
+      return ordered
     }
+    return emptyList()
   }
+  fun discover(
+    file: CachedDocumentFile,
+    root: Boolean = false,
+  ): List<CachedDocumentFile> {
+    if (file.isFile) return if (file.isAudioFile()) listOf(file) else emptyList()
+    val mode = grouping[file.uri.toString()]
+    if (mode == FolderGrouping.OneBook) return if (file.hasAudio()) listOf(file) else emptyList()
+    if (mode == FolderGrouping.Collection) return collect(file, file.children.filter { it.hasAudio() })
+    val collectionsBefore = collections.size
+    val discovered = file.children.map { it to discover(it) }
+    if (root) return discovered.flatMap { it.second }
+    val audioFolders = discovered.filter { (child, books) -> child.isDirectory && books.isNotEmpty() }
+    val explicitChild = file.children.any { it.hasGrouping(grouping) }
+    if (collections.size == collectionsBefore && !explicitChild) {
+      if (audioFolders.isEmpty()) return if (discovered.any { it.second.isNotEmpty() }) listOf(file) else emptyList()
+      if (audioFolders.all { it.first.isBookPartFolder() }) {
+        if (audioFolders.size > 1 && audioFolders.all { seriesFolderName.matches(it.first.name.orEmpty().trim()) } &&
+          file.children.none { it.isAudioFile() }
+        ) {
+          return collect(file, audioFolders.map { it.first })
+        }
+        return listOf(file)
+      }
+    }
+    return discovered.flatMap { it.second }
+  }
+  val books = discover(this, root = true)
   return DiscoveredLibrary(books, collections)
 }
 
-public fun CachedDocumentFile.discoverAudiobooks(): List<CachedDocumentFile> {
-  return children.flatMap { it.discoverBookOrCollection() }
-}
+private fun CachedDocumentFile.hasAudio(): Boolean = if (isFile) isAudioFile() else children.any { it.hasAudio() }
 
-private fun CachedDocumentFile.discoverBookOrCollection(): List<CachedDocumentFile> {
-  if (isFile) return if (isAudioFile()) listOf(this) else emptyList()
-  val discovered = children.map { it to it.discoverBookOrCollection() }
-  val audioFolders = discovered.filter { (file, books) -> file.isDirectory && books.isNotEmpty() }
-  if (audioFolders.isEmpty()) {
-    return if (discovered.any { it.second.isNotEmpty() }) listOf(this) else emptyList()
-  }
-  if (audioFolders.all { it.first.isBookPartFolder() }) return listOf(this)
-  return discovered.flatMap { it.second }
-}
+private fun CachedDocumentFile.hasGrouping(grouping: Map<String, FolderGrouping>): Boolean =
+  uri.toString() in grouping || (isDirectory && children.any { it.hasGrouping(grouping) })
+
+public fun CachedDocumentFile.discoverAudiobooks(): List<CachedDocumentFile> = discoverLibrary().books
 
 public fun CachedDocumentFile.isBookPartFolder(): Boolean = bookPartFolderName.matches(name.orEmpty().trim())
 

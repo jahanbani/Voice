@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">%1$s-ஐ இயக்கு</string>
     <string name="widget.shelf.title">தொடர்ந்து கேளுங்கள்</string>
     <string name="widget.sleep_timer.stops_at">%1$s மணிக்கு நிற்கும்</string>
+    <string name="grouping.title">கோப்புறைத் தொகுத்தல்</string>
+    <string name="grouping.help">தானியங்கு பயன்முறையில் உள்ள நூலகத்தில் ஒரு கோப்புறையைத் தேர்ந்தெடுக்கவும். ஒரு தொகுப்பில், ஒவ்வொரு நேரடி துணைக் கோப்புறையும் தனிப் புத்தகமாக இருக்கும். ஒலிக் கோப்புகள் அதே இடத்தில் இருக்கும்.</string>
+    <string name="grouping.one_book">ஒரு புத்தகம்</string>
+    <string name="grouping.empty">தொகுக்கும் முறையை மாற்ற, தானியங்கு பயன்முறையில் ஒரு கோப்புறையைச் சேர்க்கவும்.</string>
+    <string name="grouping.saved">தொகுக்கும் முறை சேமிக்கப்பட்டது. உங்கள் நூலகம் புதுப்பிக்கப்படுகிறது…</string>
+    <string name="backup.title">கேட்டல் காப்புப்பிரதி</string>
+    <string name="backup.export">முன்னேற்றத்தையும் புக்மார்க்குகளையும் ஏற்றுமதி செய்</string>
+    <string name="backup.import">முன்னேற்றத்தையும் புக்மார்க்குகளையும் இறக்குமதி செய்</string>
+    <string name="backup.help">வேறொரு ஃபோனில் இறக்குமதி செய்யும் முன், அதே ஒலிக் கோப்புகளைச் சேர்க்கவும். காப்புப்பிரதியில் ஒலிக் கோப்புகள் சேர்க்கப்படாது.</string>
+    <string name="backup.review">பொருந்திய புத்தகங்கள்: %1$d; தவிர்க்கப்பட்டவை: %2$d. இறக்குமதி செய்வது அவற்றின் கேட்டல் நிலைகளை மாற்றி, புக்மார்க்குகளை ஒன்றிணைக்கும்.</string>
+    <string name="backup.confirm">இறக்குமதி செய்</string>
+    <string name="backup.saved">காப்புப்பிரதி சேமிக்கப்பட்டது</string>
+    <string name="backup.restored">இறக்குமதி செய்த புத்தகங்கள்: %1$d; தவிர்க்கப்பட்டவை: %2$d</string>
+    <string name="backup.error">இந்தக் காப்புப்பிரதியைப் படிக்கவோ எழுதவோ முடியவில்லை.</string>
+    <string name="collection.next">இந்தத் தொகுப்பில் அடுத்து</string>
 </resources>

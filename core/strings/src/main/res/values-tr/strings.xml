@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Oynat: %1$s</string>
     <string name="widget.shelf.title">Dinlemeye devam et</string>
     <string name="widget.sleep_timer.stops_at">Durma saati: %1$s</string>
+    <string name="grouping.title">Klasör gruplama</string>
+    <string name="grouping.help">Otomatik moddaki bir kitaplıkta klasör seçin. Koleksiyon, her doğrudan alt klasörü ayrı bir kitap olarak tutar. Ses dosyaları yerinde kalır.</string>
+    <string name="grouping.one_book">Tek kitap</string>
+    <string name="grouping.empty">Gruplamayı değiştirmek için Otomatik modda bir klasör ekleyin.</string>
+    <string name="grouping.saved">Gruplama kaydedildi. Kitaplığınız güncelleniyor…</string>
+    <string name="backup.title">Dinleme yedeği</string>
+    <string name="backup.export">İlerlemeyi ve yer imlerini dışa aktar</string>
+    <string name="backup.import">İlerlemeyi ve yer imlerini içe aktar</string>
+    <string name="backup.help">Başka bir telefonda içe aktarmadan önce aynı ses dosyalarını ekleyin. Ses dosyaları yedeğe dahil değildir.</string>
+    <string name="backup.review">Eşleşen kitaplar: %1$d; atlananlar: %2$d. İçe aktarma, bu kitapların dinleme konumlarını değiştirir ve yer imlerini birleştirir.</string>
+    <string name="backup.confirm">İçe aktar</string>
+    <string name="backup.saved">Yedek kaydedildi</string>
+    <string name="backup.restored">İçe aktarılan kitaplar: %1$d; atlananlar: %2$d</string>
+    <string name="backup.error">Bu yedek okunamadı veya yazılamadı.</string>
+    <string name="collection.next">Bu koleksiyonda sıradaki</string>
 </resources>

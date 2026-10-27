@@ -22,6 +22,8 @@ import kotlinx.coroutines.yield
 import voice.core.audiobookshelf.ServerLibrary
 import voice.core.common.DispatcherProvider
 import voice.core.data.Book
+import voice.core.data.BookCollection
+import voice.core.data.BookCollectionPart
 import voice.core.data.BookContent
 import voice.core.data.BookId
 import voice.core.data.BookMetadata
@@ -31,6 +33,7 @@ import voice.core.data.ChapterId
 import voice.core.data.ListeningEvent
 import voice.core.data.MarkData
 import voice.core.data.repo.BookmarkRepo
+import voice.core.data.store.BookCollectionsStore
 import voice.core.data.store.CurrentBookStore
 import voice.core.featureflag.MemoryFeatureFlag
 import voice.core.kioskmode.KioskModeDemoData
@@ -51,6 +54,8 @@ import voice.core.sleeptimer.SleepTimerMode.TimedWithDuration
 import voice.core.sleeptimer.SleepTimerPreference
 import voice.core.sleeptimer.SleepTimerPreferenceStore
 import voice.core.sleeptimer.SleepTimerState
+import voice.navigation.Destination
+import voice.navigation.Navigator
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
@@ -138,6 +143,7 @@ class BookPlayViewModelTest {
     clock = clock,
     serverLibrary = serverLibrary,
     lastPlaybackSpeedStore = LastPlaybackSpeedStore(MemoryDataStore(1F)),
+    collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(emptyList())),
   )
 
   @Test
@@ -489,11 +495,17 @@ class BookPlayViewModelTest {
     livePlaybackFlow: MutableStateFlow<LivePlaybackState?> = MutableStateFlow(null),
     playStateFlow: MutableStateFlow<PlayStateManager.PlayState> = MutableStateFlow(PlayStateManager.PlayState.Paused),
     lastPlaybackSpeed: Float = 1F,
+    collections: List<BookCollection> = emptyList(),
+    library: List<Book> = listOf(book),
+    navigator: Navigator = mockk(),
+    currentBookStore: CurrentBookStore = CurrentBookStore(MemoryDataStore(null)),
   ): BookPlayViewModel {
     return BookPlayViewModel(
       bookRepository = mockk {
         coEvery { get(book.id) } returns book
         every { flow(book.id) } returns MutableStateFlow(book)
+        every { flow() } returns MutableStateFlow(library)
+        coEvery { all() } returns library
       },
       currentBookResolver = currentBookResolver,
       player = (player ?: mockk()).apply {
@@ -505,8 +517,8 @@ class BookPlayViewModelTest {
         every { this@mockk.playStateFlow } returns playStateFlow
         every { playState } returns playStateFlow.value
       },
-      currentBookStoreId = CurrentBookStore(MemoryDataStore(null)),
-      navigator = mockk(),
+      currentBookStoreId = currentBookStore,
+      navigator = navigator,
       bookmarkRepository = mockk(),
       volumeGainFormatter = mockk(),
       batteryOptimization = mockk(),
@@ -522,7 +534,47 @@ class BookPlayViewModelTest {
       clock = clock,
       serverLibrary = serverLibrary,
       lastPlaybackSpeedStore = LastPlaybackSpeedStore(MemoryDataStore(lastPlaybackSpeed)),
+      collectionsStore = BookCollectionsStore(MemoryDataStore(collections)),
     )
+  }
+
+  @Test
+  fun `finished series offers and plays the next unfinished collection member`() = scope.runTest {
+    val finished = book.update { it.copy(positionInChapter = book.currentChapter.duration) }
+    val next = book()
+    val collection = BookCollection(
+      BookId("collection"),
+      "Detective",
+      listOf(
+        BookCollectionPart(book.id, "Series 1"),
+        BookCollectionPart(next.id, "Series 2"),
+      ),
+    )
+    val navigator = mockk<Navigator>(relaxUnitFun = true)
+    val player = mockk<PlayerController>(relaxUnitFun = true)
+    val current = CurrentBookStore(MemoryDataStore<BookId?>(null))
+    coEvery { currentBookResolver.book(book.id) } returns finished
+    val viewModel =
+      viewModel(
+        finished,
+        player,
+        collections = listOf(collection),
+        library = listOf(finished, next),
+        navigator = navigator,
+        currentBookStore = current,
+      )
+    backgroundScope.launchMolecule(RecompositionMode.Immediate) { viewModel.viewState() }.test {
+      runCurrent()
+      val state = expectMostRecentItem()!!
+      assertEquals(next.id, state.nextCollectionBookId)
+      assertEquals("Series 2", state.nextCollectionBookName)
+      viewModel.onNextCollectionBookClick(next.id)
+      runCurrent()
+      assertEquals(next.id, current.data.first())
+      verify { player.play() }
+      verify { navigator.goTo(Destination.Playback(next.id)) }
+      cancelAndIgnoreRemainingEvents()
+    }
   }
 }
 

@@ -504,4 +504,19 @@
     <string name="widget.shelf.play">Prehrať %1$s</string>
     <string name="widget.shelf.title">Pokračovať v počúvaní</string>
     <string name="widget.sleep_timer.stops_at">Vypne sa o %1$s</string>
+    <string name="grouping.title">Zoskupenie priečinkov</string>
+    <string name="grouping.help">Vyberte priečinok v knižnici s režimom Automaticky. V kolekcii bude každý priamy podpriečinok samostatnou knihou. Zvukové súbory zostanú na svojom mieste.</string>
+    <string name="grouping.one_book">Jedna kniha</string>
+    <string name="grouping.empty">Ak chcete zmeniť zoskupenie, pridajte priečinok v režime Automaticky.</string>
+    <string name="grouping.saved">Zoskupenie uložené. Aktualizujeme vašu knižnicu…</string>
+    <string name="backup.title">Záloha počúvania</string>
+    <string name="backup.export">Exportovať postup a záložky</string>
+    <string name="backup.import">Importovať postup a záložky</string>
+    <string name="backup.help">Pred importom na inom telefóne pridajte rovnaké zvukové súbory. Záloha neobsahuje zvukové súbory.</string>
+    <string name="backup.review">Nájdené knihy: %1$d; preskočené: %2$d. Import nahradí ich pozície počúvania a zlúči záložky.</string>
+    <string name="backup.confirm">Importovať</string>
+    <string name="backup.saved">Záloha uložená</string>
+    <string name="backup.restored">Importované knihy: %1$d; preskočené: %2$d</string>
+    <string name="backup.error">Túto zálohu sa nepodarilo prečítať alebo zapísať.</string>
+    <string name="collection.next">Ďalšia v tejto kolekcii</string>
 </resources>

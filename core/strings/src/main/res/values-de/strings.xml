@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">%1$s abspielen</string>
     <string name="widget.shelf.title">Weiterhören</string>
     <string name="widget.sleep_timer.stops_at">Stoppt um %1$s</string>
+    <string name="grouping.title">Ordnergruppierung</string>
+    <string name="grouping.help">Wähle einen Ordner in einer automatischen Bibliothek. In einer Sammlung bleibt jeder direkte Unterordner ein eigenes Buch. Die Audiodateien bleiben an ihrem Platz.</string>
+    <string name="grouping.one_book">Ein Buch</string>
+    <string name="grouping.empty">Füge einen Ordner im automatischen Modus hinzu, um seine Gruppierung zu ändern.</string>
+    <string name="grouping.saved">Gruppierung gespeichert. Deine Bibliothek wird aktualisiert…</string>
+    <string name="backup.title">Hörfortschritt sichern</string>
+    <string name="backup.export">Fortschritt und Lesezeichen exportieren</string>
+    <string name="backup.import">Fortschritt und Lesezeichen importieren</string>
+    <string name="backup.help">Füge dieselben Audiodateien hinzu, bevor Du sie auf einem anderen Handy importierst. Audiodateien sind nicht enthalten.</string>
+    <string name="backup.review">Zugeordnete Bücher: %1$d; übersprungen: %2$d. Der Import ersetzt ihre Hörpositionen und führt Lesezeichen zusammen.</string>
+    <string name="backup.confirm">Importieren</string>
+    <string name="backup.saved">Sicherung gespeichert</string>
+    <string name="backup.restored">Importierte Bücher: %1$d; übersprungen: %2$d</string>
+    <string name="backup.error">Diese Sicherung konnte nicht gelesen oder geschrieben werden.</string>
+    <string name="collection.next">Als Nächstes in dieser Sammlung</string>
 </resources>

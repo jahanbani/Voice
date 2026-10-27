@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Spill %1$s</string>
     <string name="widget.shelf.title">Fortsett å lytte</string>
     <string name="widget.sleep_timer.stops_at">Stopper kl. %1$s</string>
+    <string name="grouping.title">Mappegruppering</string>
+    <string name="grouping.help">Velg en mappe i et automatisk bibliotek. En samling beholder hver direkte undermappe som en egen bok. Lydfilene blir der de er.</string>
+    <string name="grouping.one_book">Én bok</string>
+    <string name="grouping.empty">Legg til en mappe i automatisk modus for å endre grupperingen.</string>
+    <string name="grouping.saved">Gruppering lagret. Oppdaterer biblioteket ditt…</string>
+    <string name="backup.title">Sikkerhetskopi av lytting</string>
+    <string name="backup.export">Eksporter fremdrift og bokmerker</string>
+    <string name="backup.import">Importer fremdrift og bokmerker</string>
+    <string name="backup.help">Legg til de samme lydfilene før du importerer på en annen telefon. Lydfiler er ikke inkludert.</string>
+    <string name="backup.review">Bøker som samsvarer: %1$d; hoppet over: %2$d. Import erstatter lytteposisjonene deres og slår sammen bokmerker.</string>
+    <string name="backup.confirm">Importer</string>
+    <string name="backup.saved">Sikkerhetskopi lagret</string>
+    <string name="backup.restored">Bøker importert: %1$d; hoppet over: %2$d</string>
+    <string name="backup.error">Kunne ikke lese eller skrive denne sikkerhetskopien.</string>
+    <string name="collection.next">Neste i denne samlingen</string>
 </resources>

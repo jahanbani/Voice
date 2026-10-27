@@ -12,6 +12,9 @@ import voice.core.playback.misc.Decibel
 internal sealed interface CustomCommand {
 
   @Serializable
+  data object PauseForLibraryChange : CustomCommand
+
+  @Serializable
   data object ForceSeekToNext : CustomCommand
 
   @Serializable
@@ -45,9 +48,12 @@ internal sealed interface CustomCommand {
   }
 }
 
-internal fun MediaController.sendCustomCommand(command: CustomCommand) {
+@IgnorableReturnValue
+internal fun MediaController.sendCustomCommand(
+  command: CustomCommand,
+): com.google.common.util.concurrent.ListenableFuture<androidx.media3.session.SessionResult> {
   val json = Json.encodeToString(CustomCommand.serializer(), command)
-  sendCustomCommand(
+  return sendCustomCommand(
     SessionCommand(CustomCommand.CUSTOM_COMMAND_ACTION, Bundle.EMPTY),
     Bundle().apply {
       putString(CustomCommand.CUSTOM_COMMAND_EXTRA, json)

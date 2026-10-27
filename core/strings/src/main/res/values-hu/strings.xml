@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">%1$s lejátszása</string>
     <string name="widget.shelf.title">Hallgatás folytatása</string>
     <string name="widget.sleep_timer.stops_at">Leáll ekkor: %1$s</string>
+    <string name="grouping.title">Mappák csoportosítása</string>
+    <string name="grouping.help">Válasszon egy mappát egy Automatikus módú könyvtárban. A gyűjtemény minden közvetlen almappát külön könyvként kezel. A hangfájlok a helyükön maradnak.</string>
+    <string name="grouping.one_book">Egy könyv</string>
+    <string name="grouping.empty">A csoportosítás módosításához adjon hozzá egy mappát Automatikus módban.</string>
+    <string name="grouping.saved">Csoportosítás mentve. Könyvtár frissítése…</string>
+    <string name="backup.title">Hallgatási adatok mentése</string>
+    <string name="backup.export">Előrehaladás és könyvjelzők exportálása</string>
+    <string name="backup.import">Előrehaladás és könyvjelzők importálása</string>
+    <string name="backup.help">Az importálás előtt adja hozzá ugyanazokat a hangfájlokat a másik telefonon. A mentés nem tartalmaz hangfájlokat.</string>
+    <string name="backup.review">Egyező könyvek: %1$d; kihagyott könyvek: %2$d. Az importálás felülírja a hallgatási pozícióikat, és egyesíti a könyvjelzőiket.</string>
+    <string name="backup.confirm">Importálás</string>
+    <string name="backup.saved">Biztonsági mentés kész</string>
+    <string name="backup.restored">Importált könyvek: %1$d; kihagyott könyvek: %2$d</string>
+    <string name="backup.error">A biztonsági mentést nem sikerült olvasni vagy írni.</string>
+    <string name="collection.next">Következő ebben a gyűjteményben</string>
 </resources>

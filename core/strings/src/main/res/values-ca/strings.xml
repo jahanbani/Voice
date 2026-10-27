@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">Reprodueix %1$s</string>
     <string name="widget.shelf.title">Continua escoltant</string>
     <string name="widget.sleep_timer.stops_at">S\'atura a les %1$s</string>
+    <string name="grouping.title">Agrupació de carpetes</string>
+    <string name="grouping.help">Trieu una carpeta d’una biblioteca en mode Automàtic. Una col·lecció manté cada subcarpeta immediata com un llibre independent. Els fitxers d’àudio es queden on són.</string>
+    <string name="grouping.one_book">Un llibre</string>
+    <string name="grouping.empty">Afegiu una carpeta en mode Automàtic per canviar-ne l’agrupació.</string>
+    <string name="grouping.saved">Agrupació desada. S’està actualitzant la biblioteca…</string>
+    <string name="backup.title">Còpia de seguretat de l’escolta</string>
+    <string name="backup.export">Exporta el progrés i els punts de llibre</string>
+    <string name="backup.import">Importa el progrés i els punts de llibre</string>
+    <string name="backup.help">Afegiu els mateixos fitxers d’àudio abans d’importar en un altre telèfon. Els fitxers d’àudio no s’hi inclouen.</string>
+    <string name="backup.review">Llibres coincidents: %1$d; omesos: %2$d. La importació en substitueix les posicions d’escolta i combina els punts de llibre.</string>
+    <string name="backup.confirm">Importa</string>
+    <string name="backup.saved">Còpia de seguretat desada</string>
+    <string name="backup.restored">Llibres importats: %1$d; omesos: %2$d</string>
+    <string name="backup.error">No s’ha pogut llegir o escriure aquesta còpia de seguretat.</string>
+    <string name="collection.next">Següent d’aquesta col·lecció</string>
 </resources>

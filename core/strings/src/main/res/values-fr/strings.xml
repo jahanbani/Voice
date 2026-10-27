@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">Lire %1$s</string>
     <string name="widget.shelf.title">Reprendre l\'écoute</string>
     <string name="widget.sleep_timer.stops_at">S\'arrête à %1$s</string>
+    <string name="grouping.title">Regroupement des dossiers</string>
+    <string name="grouping.help">Choisissez un dossier d’une bibliothèque en mode Automatique. Une collection garde chaque sous-dossier direct comme un livre distinct. Les fichiers audio restent à leur place.</string>
+    <string name="grouping.one_book">Un seul livre</string>
+    <string name="grouping.empty">Ajoutez un dossier en mode Automatique pour modifier son regroupement.</string>
+    <string name="grouping.saved">Regroupement enregistré. Mise à jour de votre bibliothèque…</string>
+    <string name="backup.title">Sauvegarde de l’écoute</string>
+    <string name="backup.export">Exporter la progression et les marque-pages</string>
+    <string name="backup.import">Importer la progression et les marque-pages</string>
+    <string name="backup.help">Ajoutez les mêmes fichiers audio avant d’importer sur un autre téléphone. Les fichiers audio ne sont pas inclus.</string>
+    <string name="backup.review">Livres correspondants : %1$d ; ignorés : %2$d. L’importation remplace leurs positions d’écoute et fusionne les marque-pages.</string>
+    <string name="backup.confirm">Importer</string>
+    <string name="backup.saved">Sauvegarde enregistrée</string>
+    <string name="backup.restored">Livres importés : %1$d ; ignorés : %2$d</string>
+    <string name="backup.error">Impossible de lire ou d’écrire cette sauvegarde.</string>
+    <string name="collection.next">Suite de cette collection</string>
 </resources>

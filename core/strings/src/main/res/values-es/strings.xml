@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">Reproducir %1$s</string>
     <string name="widget.shelf.title">Seguir escuchando</string>
     <string name="widget.sleep_timer.stops_at">Se apaga a las %1$s</string>
+    <string name="grouping.title">Agrupación de carpetas</string>
+    <string name="grouping.help">Elige una carpeta de una biblioteca en modo Automático. Una colección mantiene cada subcarpeta inmediata como un libro independiente. Los archivos de audio se quedan donde están.</string>
+    <string name="grouping.one_book">Un libro</string>
+    <string name="grouping.empty">Añade una carpeta en modo Automático para cambiar su agrupación.</string>
+    <string name="grouping.saved">Agrupación guardada. Actualizando tu biblioteca…</string>
+    <string name="backup.title">Copia de seguridad de la escucha</string>
+    <string name="backup.export">Exportar progreso y marcadores</string>
+    <string name="backup.import">Importar progreso y marcadores</string>
+    <string name="backup.help">Añade los mismos archivos de audio antes de importar en otro teléfono. Los archivos de audio no se incluyen.</string>
+    <string name="backup.review">Libros coincidentes: %1$d; omitidos: %2$d. La importación sustituye sus posiciones de escucha y combina los marcadores.</string>
+    <string name="backup.confirm">Importar</string>
+    <string name="backup.saved">Copia de seguridad guardada</string>
+    <string name="backup.restored">Libros importados: %1$d; omitidos: %2$d</string>
+    <string name="backup.error">No se pudo leer o escribir esta copia de seguridad.</string>
+    <string name="collection.next">Siguiente de esta colección</string>
 </resources>

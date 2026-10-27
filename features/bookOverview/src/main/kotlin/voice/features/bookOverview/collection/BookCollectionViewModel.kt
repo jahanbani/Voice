@@ -14,6 +14,7 @@ import voice.core.data.Book
 import voice.core.data.BookCollection
 import voice.core.data.BookId
 import voice.core.data.repo.BookRepository
+import voice.core.data.resumeBook
 import voice.core.data.store.BookCollectionsStore
 import voice.core.data.store.CurrentBookStore
 import voice.core.playback.PlayerController
@@ -22,7 +23,6 @@ import voice.features.bookOverview.overview.BookOverviewItemViewState
 import voice.features.bookOverview.overview.toItemViewState
 import voice.navigation.Destination
 import voice.navigation.Navigator
-import java.time.Instant
 
 internal data class BookCollectionViewState(
   val name: String,
@@ -91,12 +91,10 @@ internal fun collectionViewState(
 ): BookCollectionViewState {
   val byId = books.associateBy { it.id }
   val members = collection.parts.mapNotNull { part -> byId[part.id]?.let { part to it } }
-  val resume = members.find { it.second.id == currentBook }
-    ?: members.filter { it.second.content.lastPlayedAt > Instant.EPOCH }.maxByOrNull { it.second.content.lastPlayedAt }
-    ?: members.firstOrNull()
+  val resume = collection.resumeBook(books, currentBook)
   return BookCollectionViewState(
     name = collection.name,
     books = members.map { (part, book) -> book.toItemViewState().copy(name = book.content.customName ?: part.name) },
-    resumeId = resume?.second?.id,
+    resumeId = resume?.id,
   )
 }

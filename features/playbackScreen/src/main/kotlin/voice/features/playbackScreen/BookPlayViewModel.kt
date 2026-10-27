@@ -23,9 +23,12 @@ import voice.core.data.BookId
 import voice.core.data.Bookmark
 import voice.core.data.ListeningEvent
 import voice.core.data.durationMs
+import voice.core.data.isFinished
 import voice.core.data.markForPosition
+import voice.core.data.nextUnfinishedBook
 import voice.core.data.repo.BookRepository
 import voice.core.data.repo.BookmarkRepo
+import voice.core.data.store.BookCollectionsStore
 import voice.core.data.store.CurrentBookStore
 import voice.core.featureflag.FeatureFlag
 import voice.core.kioskmode.KioskModeDemoData
@@ -80,6 +83,7 @@ class BookPlayViewModel(
   private val clock: Clock,
   private val serverLibrary: ServerLibrary,
   private val lastPlaybackSpeedStore: LastPlaybackSpeedStore,
+  private val collectionsStore: BookCollectionsStore,
   @Assisted
   private val bookId: BookId,
 ) {
@@ -145,6 +149,14 @@ class BookPlayViewModel(
       book.currentChapter.chapterMarks.indexOf(currentMark) + 1
     val lastJump = remember { historyRecorder.lastJump }.collectAsState().value
     val unavailableBooks = remember { serverLibrary.unavailableBooks }.collectAsState(initial = emptySet()).value
+    val collections = remember { collectionsStore.data }.collectAsState(initial = emptyList()).value
+    val collection = collections.find { it.parts.any { part -> part.id == bookId } }
+    val nextBook = if (!isPlaying && book.isFinished && collection != null) {
+      val library = remember { bookRepository.flow() }.collectAsState(initial = emptyList()).value
+      collection.nextUnfinishedBook(bookId, library)
+    } else {
+      null
+    }
     return BookPlayViewState(
       sleepTimerState = sleepTime.toViewState(),
       playing = isPlaying,
@@ -166,6 +178,11 @@ class BookPlayViewModel(
       skipSeconds = skipSeconds,
       jumpBack = lastJump?.let { jumpBackViewState(book, it, chapterNumber) },
       unavailable = book.id in unavailableBooks,
+      nextCollectionBookId = nextBook?.id,
+      nextCollectionBookName = nextBook?.let {
+        it.content.customName ?: collection?.parts?.find { part -> part.id == it.id }?.name
+          ?: it.content.name
+      },
     )
   }
 
@@ -304,6 +321,20 @@ class BookPlayViewModel(
 
   fun onCloseClick() {
     navigator.goBack()
+  }
+
+  fun onNextCollectionBookClick(id: BookId) {
+    scope.launch {
+      val current = currentBook() ?: return@launch
+      if (!current.isFinished) return@launch
+      val collection = collectionsStore.data.first().find { it.parts.any { part -> part.id == bookId } } ?: return@launch
+      if (collection.nextUnfinishedBook(bookId, bookRepository.all())?.id != id) return@launch
+      player.pauseIfCurrentBookDifferentFrom(id)
+      currentBookStoreId.updateData { id }
+      player.play()
+      navigator.remove(Destination.Playback(bookId))
+      navigator.goTo(Destination.Playback(id))
+    }
   }
 
   fun onBookActionsClick() {

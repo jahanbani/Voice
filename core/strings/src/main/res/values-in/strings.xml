@@ -450,4 +450,19 @@
     <string name="widget.shelf.play">Putar %1$s</string>
     <string name="widget.shelf.title">Lanjutkan mendengarkan</string>
     <string name="widget.sleep_timer.stops_at">Berhenti pukul %1$s</string>
+    <string name="grouping.title">Pengelompokan folder</string>
+    <string name="grouping.help">Pilih folder di pustaka dengan mode Otomatis. Koleksi menjadikan setiap subfolder langsung sebagai buku terpisah. File audio tetap di tempatnya.</string>
+    <string name="grouping.one_book">Satu buku</string>
+    <string name="grouping.empty">Tambahkan folder dalam mode Otomatis untuk mengubah pengelompokannya.</string>
+    <string name="grouping.saved">Pengelompokan disimpan. Memperbarui pustaka Anda…</string>
+    <string name="backup.title">Cadangan mendengarkan</string>
+    <string name="backup.export">Ekspor progres dan markah</string>
+    <string name="backup.import">Impor progres dan markah</string>
+    <string name="backup.help">Tambahkan file audio yang sama sebelum mengimpor di ponsel lain. File audio tidak disertakan.</string>
+    <string name="backup.review">Buku yang cocok: %1$d; dilewati: %2$d. Impor mengganti posisi mendengarkan buku tersebut dan menggabungkan markah.</string>
+    <string name="backup.confirm">Impor</string>
+    <string name="backup.saved">Cadangan disimpan</string>
+    <string name="backup.restored">Buku yang diimpor: %1$d; dilewati: %2$d</string>
+    <string name="backup.error">Cadangan ini tidak dapat dibaca atau ditulis.</string>
+    <string name="collection.next">Berikutnya dalam koleksi ini</string>
 </resources>

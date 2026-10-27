@@ -118,6 +118,14 @@ class PlayerController(
     }
   }
 
+  suspend fun pauseForLibraryChange() {
+    withContext(Dispatchers.Main.immediate) {
+      val controller = awaitConnect() ?: error("Player unavailable")
+      val result = controller.sendCustomCommand(CustomCommand.PauseForLibraryChange).asDeferred().await()
+      check(result.resultCode == androidx.media3.session.SessionResult.RESULT_SUCCESS)
+    }
+  }
+
   fun skipSilence(skip: Boolean) = executeAfterPrepare { controller ->
     controller.sendCustomCommand(CustomCommand.SetSkipSilence(skip))
   }

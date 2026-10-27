@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Пушти %1$s</string>
     <string name="widget.shelf.title">Продолжи со слушање</string>
     <string name="widget.sleep_timer.stops_at">Запира во %1$s</string>
+    <string name="grouping.title">Групирање фолдери</string>
+    <string name="grouping.help">Изберете фолдер во библиотека со режим „Автоматски“. Во збирката, секој непосреден подфолдер е посебна книга. Аудиодатотеките остануваат на своето место.</string>
+    <string name="grouping.one_book">Една книга</string>
+    <string name="grouping.empty">Додајте фолдер во режим „Автоматски“ за да го промените групирањето.</string>
+    <string name="grouping.saved">Групирањето е зачувано. Ја ажурираме вашата библиотека…</string>
+    <string name="backup.title">Резервна копија на слушањето</string>
+    <string name="backup.export">Извези напредок и обележувачи</string>
+    <string name="backup.import">Увези напредок и обележувачи</string>
+    <string name="backup.help">Додајте ги истите аудиодатотеки пред увозот на друг телефон. Аудиодатотеките не се вклучени.</string>
+    <string name="backup.review">Најдени книги: %1$d; прескокнати: %2$d. Увозот ги заменува нивните позиции на слушање и ги спојува обележувачите.</string>
+    <string name="backup.confirm">Увези</string>
+    <string name="backup.saved">Резервната копија е зачувана</string>
+    <string name="backup.restored">Увезени книги: %1$d; прескокнати: %2$d</string>
+    <string name="backup.error">Не може да се прочита или запише оваа резервна копија.</string>
+    <string name="collection.next">Следно во оваа збирка</string>
 </resources>

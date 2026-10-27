@@ -26,6 +26,13 @@ public class BookContentRepoImpl(private val dao: BookContentDao) : BookContentR
   private var cacheFilled = false
   private val cache = MutableStateFlow<List<BookContent>?>(null)
 
+  internal suspend fun refreshAfterWrite() {
+    cacheMutex.withLock {
+      cache.value = dao.all()
+      cacheFilled = true
+    }
+  }
+
   private suspend fun fillCache() {
     if (cacheFilled) return
     cacheMutex.withLock {

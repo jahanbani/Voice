@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">پخش %1$s</string>
     <string name="widget.shelf.title">ادامهٔ گوش دادن</string>
     <string name="widget.sleep_timer.stops_at">توقف در ساعت %1$s</string>
+    <string name="grouping.title">گروه‌بندی پوشه‌ها</string>
+    <string name="grouping.help">پوشه‌ای را در کتابخانه‌ای با حالت خودکار انتخاب کنید. در یک مجموعه، هر زیرپوشهٔ مستقیم یک کتاب جداگانه است. فایل‌های صوتی در جای خود می‌مانند.</string>
+    <string name="grouping.one_book">یک کتاب</string>
+    <string name="grouping.empty">برای تغییر گروه‌بندی، پوشه‌ای را در حالت خودکار اضافه کنید.</string>
+    <string name="grouping.saved">گروه‌بندی ذخیره شد. در حال به‌روزرسانی کتابخانهٔ شما…</string>
+    <string name="backup.title">نسخهٔ پشتیبان شنیدن</string>
+    <string name="backup.export">خروجی گرفتن از پیشرفت و نشانه‌ها</string>
+    <string name="backup.import">وارد کردن پیشرفت و نشانه‌ها</string>
+    <string name="backup.help">پیش از وارد کردن در گوشی دیگر، همان فایل‌های صوتی را اضافه کنید. فایل‌های صوتی در نسخهٔ پشتیبان نیستند.</string>
+    <string name="backup.review">کتاب‌های تطبیق‌یافته: %1$d؛ نادیده‌گرفته‌شده: %2$d. با وارد کردن، موقعیت شنیدن این کتاب‌ها جایگزین و نشانه‌ها ادغام می‌شوند.</string>
+    <string name="backup.confirm">وارد کردن</string>
+    <string name="backup.saved">نسخهٔ پشتیبان ذخیره شد</string>
+    <string name="backup.restored">کتاب‌های واردشده: %1$d؛ نادیده‌گرفته‌شده: %2$d</string>
+    <string name="backup.error">خواندن یا نوشتن این نسخهٔ پشتیبان ممکن نشد.</string>
+    <string name="collection.next">بعدی در این مجموعه</string>
 </resources>

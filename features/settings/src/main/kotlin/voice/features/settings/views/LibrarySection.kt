@@ -79,6 +79,7 @@ internal fun LibrarySection(
   onAudiobookshelfClick: () -> Unit,
   onUseGridChange: (Boolean) -> Unit,
   modifier: Modifier = Modifier,
+  onGroupingClick: () -> Unit = {},
 ) {
   val colors = MaterialTheme.colorScheme
   // the tertiary container is a light tone in the dark theme, which glares as a whole island
@@ -113,6 +114,11 @@ internal fun LibrarySection(
     if (showAudiobookshelf) {
       AudiobookshelfRow(audiobookshelfServer, onAudiobookshelfClick)
     }
+    IslandRow(
+      title = stringResource(StringsR.string.grouping_title),
+      onClick = onGroupingClick,
+      leading = { androidx.compose.material3.Icon(VoiceIcons.Folder, contentDescription = null) },
+    )
     Spacer(Modifier.height(12.dp))
     Row(
       modifier = Modifier

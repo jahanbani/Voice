@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Reprodue %1$s</string>
     <string name="widget.shelf.title">Sighi a ascurtare</string>
     <string name="widget.sleep_timer.stops_at">Si firmat a sas %1$s</string>
+    <string name="grouping.title">Agrupamentu de cartellas</string>
+    <string name="grouping.help">Issèbera una cartella in una biblioteca in modalidade Automàticu. Una colletzione mantenet cada sutacartella direta comente unu libru separadu. Sos documentos àudio abarrant in ue sunt.</string>
+    <string name="grouping.one_book">Unu libru</string>
+    <string name="grouping.empty">Agiunghe una cartella in modalidade Automàticu pro cambiare s’agrupamentu suo.</string>
+    <string name="grouping.saved">Agrupamentu sarvadu. Agiornende sa biblioteca tua…</string>
+    <string name="backup.title">Còpia de seguridade de s’ascurtu</string>
+    <string name="backup.export">Esporta progressu e sinnalibros</string>
+    <string name="backup.import">Importa progressu e sinnalibros</string>
+    <string name="backup.help">Agiunghe sos matessi documentos àudio in antis de importare in un’àteru telèfonu. Sos documentos àudio non sunt incluìdos.</string>
+    <string name="backup.review">Libros currispondentes: %1$d; lassados a parte: %2$d. S’importatzione sostituit sas positziones de ascurtu issoro e unit sos sinnalibros.</string>
+    <string name="backup.confirm">Importa</string>
+    <string name="backup.saved">Còpia de seguridade sarvada</string>
+    <string name="backup.restored">Libros importados: %1$d; lassados a parte: %2$d</string>
+    <string name="backup.error">No est istadu possìbile lèghere o iscrìere custa còpia de seguridade.</string>
+    <string name="collection.next">Su pròssimu in custa colletzione</string>
 </resources>

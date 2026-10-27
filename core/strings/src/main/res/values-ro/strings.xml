@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">Redă %1$s</string>
     <string name="widget.shelf.title">Continuă ascultarea</string>
     <string name="widget.sleep_timer.stops_at">Se oprește la %1$s</string>
+    <string name="grouping.title">Gruparea directoarelor</string>
+    <string name="grouping.help">Alege un director dintr-o bibliotecă în modul Automat. O colecție păstrează fiecare subdirector direct ca o carte separată. Fișierele audio rămân unde sunt.</string>
+    <string name="grouping.one_book">O singură carte</string>
+    <string name="grouping.empty">Adaugă un director în modul Automat pentru a-i schimba gruparea.</string>
+    <string name="grouping.saved">Grupare salvată. Biblioteca se actualizează…</string>
+    <string name="backup.title">Copie de siguranță a ascultării</string>
+    <string name="backup.export">Exportă progresul și semnele de carte</string>
+    <string name="backup.import">Importă progresul și semnele de carte</string>
+    <string name="backup.help">Adaugă aceleași fișiere audio înainte de a importa pe alt telefon. Fișierele audio nu sunt incluse.</string>
+    <string name="backup.review">Cărți potrivite: %1$d; omise: %2$d. Importul înlocuiește pozițiile de ascultare ale acestora și combină semnele de carte.</string>
+    <string name="backup.confirm">Importă</string>
+    <string name="backup.saved">Copie de siguranță salvată</string>
+    <string name="backup.restored">Cărți importate: %1$d; omise: %2$d</string>
+    <string name="backup.error">Nu s-a putut citi sau scrie această copie de siguranță.</string>
+    <string name="collection.next">Următoarea din această colecție</string>
 </resources>
