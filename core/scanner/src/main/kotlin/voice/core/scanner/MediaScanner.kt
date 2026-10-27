@@ -5,11 +5,12 @@ import voice.core.data.BookId
 import voice.core.data.audioFileCount
 import voice.core.data.fitIntoOneBook
 import voice.core.data.folders.FolderType
-import voice.core.data.folders.discoverAudiobooks
+import voice.core.data.folders.discoverLibrary
 import voice.core.data.isAudioFile
 import voice.core.data.isRemote
 import voice.core.data.repo.BookContentRepo
 import voice.core.data.repo.ChapterRepo
+import voice.core.data.store.BookCollectionsStore
 import voice.core.documentfile.CachedDocumentFile
 import voice.core.documentfile.walk
 import voice.core.logging.api.Logger
@@ -22,15 +23,17 @@ internal class MediaScanner(
   private val deviceHasPermissionBug: DeviceHasStoragePermissionBug,
   private val progressCarryOver: ProgressCarryOver,
   private val chapterRepo: ChapterRepo,
+  private val collectionsStore: BookCollectionsStore,
 ) {
 
   suspend fun scan(folders: Map<FolderType, List<CachedDocumentFile>>) {
+    val automaticLibraries = folders[FolderType.Automatic].orEmpty().map { it.discoverLibrary() }
     val files = folders.flatMap { (folderType, files) ->
       when (folderType) {
         FolderType.SingleFile, FolderType.SingleFolder -> {
           files
         }
-        FolderType.Automatic -> files.flatMap { it.discoverAudiobooks() }
+        FolderType.Automatic -> automaticLibraries.flatMap { it.books }
         FolderType.Root -> {
           files.flatMap { file ->
             file.children
@@ -73,6 +76,11 @@ internal class MediaScanner(
       .forEach { file ->
         scan(file, previousBooks)
       }
+    val activeIds = contentRepo.all().filter { it.isActive }.map { it.id }.toSet()
+    val collections = automaticLibraries.flatMap { it.collections }.distinctBy { it.id }
+      .map { it.copy(parts = it.parts.filter { part -> part.id in activeIds }) }
+      .filter { it.parts.isNotEmpty() }
+    collectionsStore.updateData { collections }
   }
 
   private fun List<CachedDocumentFile>.findProbeFile(): CachedDocumentFile? {

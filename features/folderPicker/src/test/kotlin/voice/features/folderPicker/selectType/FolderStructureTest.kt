@@ -4,6 +4,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import org.junit.runner.RunWith
+import voice.core.data.folders.discoverLibrary
 import voice.core.documentfile.FileBasedDocumentFile
 import java.io.File
 import kotlin.test.Test
@@ -149,6 +150,30 @@ class FolderStructureTest {
 
     assertEquals(listOf("Other", "Radio"), folder.books(FolderMode.Audiobooks).map { it.book.name }.sorted())
     assertEquals(listOf("Novel", "Other"), folder.books(FolderMode.Automatic).map { it.book.name }.sorted())
+  }
+
+  @Test
+  fun `series become collections while compact discs stay one book`() {
+    val library = folder(
+      "Detective/Series 10/01.mp3",
+      "Detective/Series 2/01.mp3",
+      "Detective/Series 1/01.mp3",
+      "Novel/CD 1/01.mp3",
+      "Novel/CD 2/01.mp3",
+      "Loose.m4b",
+    ).discoverLibrary()
+
+    assertEquals(listOf("Detective"), library.collections.map { it.name })
+    assertEquals(listOf("Series 1", "Series 2", "Series 10"), library.collections.single().parts.map { it.name })
+    assertEquals(listOf("Loose.m4b", "Novel", "Series 1", "Series 10", "Series 2"), library.books.map { it.name.orEmpty() }.sorted())
+  }
+
+  @Test
+  fun `loose audio in a series container stays in its combined book`() {
+    val library = folder("Detective/Intro.mp3", "Detective/Series 1/01.mp3", "Detective/Series 2/01.mp3").discoverLibrary()
+
+    assertEquals(emptyList(), library.collections)
+    assertEquals(listOf("Detective"), library.books.map { it.name })
   }
 
   private fun assertGuess(

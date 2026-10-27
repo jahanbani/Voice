@@ -10,6 +10,7 @@ abstract class BookOverviewScope private constructor()
 
 @GraphExtension(scope = BookOverviewScope::class)
 interface BookOverviewGraph {
+  val bookCollectionViewModel: voice.features.bookOverview.collection.BookCollectionViewModel
   val bookOverviewViewModel: BookOverviewViewModel
   val bookSearchViewModel: BookSearchViewModel
 

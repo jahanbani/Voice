@@ -91,9 +91,9 @@ internal fun ContinueListeningCard(
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
               )
-              if (book.author != null) {
+              if (book.collection || book.author != null) {
                 Text(
-                  text = book.author,
+                  text = if (book.collection) stringResource(R.string.library_collection) else book.author.orEmpty(),
                   style = MaterialTheme.typography.bodyLarge.bookText(),
                   color = colors.onSurfaceVariant,
                   maxLines = 1,

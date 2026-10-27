@@ -27,6 +27,7 @@ import voice.core.data.Book
 import voice.core.data.BookId
 import voice.core.data.folders.AudiobookFolders
 import voice.core.data.repo.BookRepository
+import voice.core.data.store.BookCollectionsStore
 import voice.core.data.store.CurrentBookStore
 import voice.core.featureflag.FeatureFlag
 import voice.core.kioskmode.KioskModeDemoData
@@ -41,6 +42,7 @@ import voice.core.scanner.MediaScanTrigger
 import voice.core.ui.GridCount
 import voice.core.ui.GridMode
 import voice.core.ui.GridModeStore
+import voice.features.bookOverview.collection.collectionLibraryItems
 import voice.features.bookOverview.di.BookOverviewScope
 import voice.features.bookOverview.survey.Survey
 import voice.navigation.Destination
@@ -69,9 +71,11 @@ class BookOverviewViewModel(
   private val audiobookFolders: AudiobookFolders,
   private val emptyLibraryTracker: EmptyLibraryTracker,
   private val survey: Survey,
+  private val collectionsStore: BookCollectionsStore,
 ) {
 
   private val scope = MainScope(dispatcherProvider)
+  private var collectionIds: Set<BookId> = emptySet()
   private var dialog by mutableStateOf<BookOverviewViewState.Dialog?>(null)
 
   fun attach() {
@@ -90,6 +94,7 @@ class BookOverviewViewModel(
       .collectAsState().value
     // Everything shown on the first frame stays loading until known, so the library never shows a
     // half loaded state (e.g. no hero card, or top bar icons that disappear again).
+    val collections = remember { collectionsStore.data }.collectAsState(initial = null).value
     val books = remember { repo.flow() }
       .collectAsState(initial = null).value
     val currentBook = remember { currentBookStoreDataStore.data.map(::CurrentBook) }
@@ -110,7 +115,7 @@ class BookOverviewViewModel(
       audiobookFolders.withoutAccess().map { folders -> folders.values.any { it.isNotEmpty() } }
     }.collectAsState(initial = null).value
     val hasSurvey = remember { survey.url().map { it != null } }.collectAsState(initial = null).value
-    if (books == null ||
+    if (books == null || collections == null ||
       currentBook == null ||
       folderPickerMovedDialogShown == null ||
       gridMode == null ||
@@ -146,26 +151,33 @@ class BookOverviewViewModel(
       remember { mutableStateOf(null) }
     }
 
+    collectionIds = collections.map { it.id }.toSet()
+    val libraryItems = books
+      .groupBy {
+        it.category
+      }
+      .mapValues { (category, books) ->
+        books
+          .sortedWith(category.comparator)
+          .associate { book ->
+            book.id to book.itemViewState(
+              currentBookId = currentBookId,
+              livePlaybackState = { livePlaybackState.value },
+              unavailable = book.id in unavailableBooks,
+              download = downloadStates[book.id].badge(),
+            )
+          }
+      }
+      .toSortedMap()
+    val displayedCurrentBook = collections.find { collection -> collection.parts.any { it.id == currentBookId } }?.id
+      ?: currentBookId
+    val groupedItems = remember(libraryItems, collections) {
+      collectionLibraryItems(libraryItems, collections, books.associate { it.id to it.duration })
+    }
     return BookOverviewViewState(
       layoutMode = layoutMode,
-      books = books
-        .groupBy {
-          it.category
-        }
-        .mapValues { (category, books) ->
-          books
-            .sortedWith(category.comparator)
-            .associate { book ->
-              book.id to book.itemViewState(
-                currentBookId = currentBookId,
-                livePlaybackState = { livePlaybackState.value },
-                unavailable = book.id in unavailableBooks,
-                download = downloadStates[book.id].badge(),
-              )
-            }
-        }
-        .toSortedMap(),
-      currentBookId = currentBookId,
+      books = groupedItems,
+      currentBookId = displayedCurrentBook,
       playButtonState = if (playState == PlayStateManager.PlayState.Playing) {
         BookOverviewViewState.PlayButtonState.Playing
       } else {
@@ -224,11 +236,11 @@ class BookOverviewViewModel(
   }
 
   fun onBookClick(id: BookId) {
-    navigator.goTo(Destination.Playback(id))
+    navigator.goTo(if (id in collectionIds) Destination.BookCollection(id) else Destination.Playback(id))
   }
 
   fun onBookLongClick(id: BookId) {
-    navigator.goTo(Destination.BookActions(id))
+    navigator.goTo(if (id in collectionIds) Destination.BookCollection(id) else Destination.BookActions(id))
   }
 
   fun onBookFolderClick() {

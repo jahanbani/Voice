@@ -243,6 +243,7 @@
     <string name="library.category.completed.title">Completato</string>
     <string name="library.category.current.title">In corso</string>
     <string name="library.category.not_started.title">Non ancora iniziato</string>
+    <string name="library.collection">Raccolta</string>
     <string name="library.continue_listening">Continua ad ascoltare</string>
     <string name="library.empty.add_first_book">Aggiungiamo la tua cartella degli audiolibri per iniziare ad ascoltare!</string>
     <string name="library.empty.title">Nessun audiolibro trovato</string>

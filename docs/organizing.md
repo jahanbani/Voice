@@ -78,3 +78,18 @@ part folders may become separate books, and several complete books stored togeth
 Use **One book** for a folder whose parts should always stay together. Automatic discovery does not add per-book
 combine/split controls or new part headings to the player. Existing chapter ordering and playback controls are used.
 Your files and folders are never reorganized.
+
+### Browsing series
+
+With Automatic discovery, a book containing two or more audio subfolders named `Series 1`, `Series 2`, and so on
+(or `Season 1`, `Season 2`) appears as a collection. Tap it to see its series in numbered order. Each series has its
+own listening position and play button; **Continue listening** opens the current or most recently played series.
+Ordinary books still open directly in the player, and `CD 1` / `CD 2` folders still form one book.
+
+When upgrading from the earlier discovery build, the current chapter, position and bookmarks move from the combined
+book into the series containing those files. Other series start with their own positions. The library rescans when
+you open it; there is no need to remove the audiobook folder or reorganize files.
+
+This applies to numbered Series/Season folders in Automatic mode. Collections with arbitrary folder names or loose
+audio beside their series remain under the existing discovery rules. Search and external playback surfaces continue
+to list the individual series. Playback stops at the end of a series; it does not automatically start the next one.

@@ -217,6 +217,7 @@
     <string name="library.category.completed.title">完了</string>
     <string name="library.category.current.title">聴きかけ</string>
     <string name="library.category.not_started.title">未再生</string>
+    <string name="library.collection">コレクション</string>
     <string name="library.continue_listening">続きを聴く</string>
     <string name="library.empty.add_first_book">オーディオブックのフォルダーを追加して、聴き始めましょう！</string>
     <string name="library.empty.title">オーディオブックが見つかりません</string>

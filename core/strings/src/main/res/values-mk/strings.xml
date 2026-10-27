@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Завршени</string>
     <string name="library.category.current.title">Тековни</string>
     <string name="library.category.not_started.title">Непочнати</string>
+    <string name="library.collection">Збирка</string>
     <string name="library.continue_listening">Продолжи со слушање</string>
     <string name="library.empty.add_first_book">Ајде да ги додадеме вашите аудио книги за да почнете со слушање!</string>
     <string name="library.empty.title">Не се пронајдени аудио книги</string>

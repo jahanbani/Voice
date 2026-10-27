@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Afsluttet</string>
     <string name="library.category.current.title">Igangværende</string>
     <string name="library.category.not_started.title">Endnu ikke startet</string>
+    <string name="library.collection">Samling</string>
     <string name="library.continue_listening">Lyt videre</string>
     <string name="library.empty.add_first_book">Lad os tilføje din lydbogsmappe, så du kan begynde at lytte!</string>
     <string name="library.empty.title">Ingen lydbøger fundet</string>

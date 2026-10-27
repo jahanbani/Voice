@@ -256,6 +256,7 @@
     <string name="library.category.completed.title">Завершені</string>
     <string name="library.category.current.title">Поточні</string>
     <string name="library.category.not_started.title">Ще не початі</string>
+    <string name="library.collection">Колекція</string>
     <string name="library.continue_listening">Продовжити слухання</string>
     <string name="library.empty.add_first_book">Давайте додамо папку з аудіокнигами, щоб ви могли почати прослуховування!</string>
     <string name="library.empty.title">Аудіокниг не знайдено</string>

@@ -22,6 +22,8 @@ import voice.core.audiobookshelf.ServerLibrary
 import voice.core.common.AppInfoProvider
 import voice.core.common.DispatcherProvider
 import voice.core.data.Book
+import voice.core.data.BookCollection
+import voice.core.data.BookCollectionPart
 import voice.core.data.BookId
 import voice.core.data.folders.AudiobookFolders
 import voice.core.data.folders.FolderType
@@ -103,6 +105,7 @@ class BookOverviewViewModelTest {
       audiobookFolders = audiobookFolders,
       emptyLibraryTracker = emptyLibraryTracker,
       survey = survey(),
+      collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(emptyList())),
     )
 
     backgroundScope.launchMolecule(RecompositionMode.Immediate) {
@@ -166,6 +169,7 @@ class BookOverviewViewModelTest {
       audiobookFolders = audiobookFolders,
       emptyLibraryTracker = emptyLibraryTracker,
       survey = survey(),
+      collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(emptyList())),
     )
 
     backgroundScope.launchMolecule(RecompositionMode.Immediate) {
@@ -458,6 +462,40 @@ class BookOverviewViewModelTest {
     }
   }
 
+  @Test
+  fun `a collection opens its series page and ordinary books still open playback`() = runTest {
+    val first = book(time = 1_000)
+    val second = book(time = 0)
+    val ordinary = book(time = 0)
+    val collection = BookCollection(
+      BookId("collection"),
+      "Detective",
+      listOf(BookCollectionPart(first.id, "Series 1"), BookCollectionPart(second.id, "Series 2")),
+    )
+    val navigator = mockk<Navigator>(relaxUnitFun = true)
+    val viewModel = viewModel(
+      books = listOf(first, second, ordinary),
+      currentBookId = first.id,
+      collections = listOf(collection),
+      navigator = navigator,
+    )
+
+    backgroundScope.launchMolecule(RecompositionMode.Immediate) {
+      viewModel.state()
+    }.test {
+      assertEquals(BookOverviewViewState.Loading, awaitItem())
+      val loaded = awaitItem()
+      assertEquals(collection.id, loaded.currentBookId)
+      assertEquals(true, loaded.books.getValue(BookOverviewCategory.CURRENT).getValue(collection.id).value.collection)
+      viewModel.onBookClick(collection.id)
+      verify { navigator.goTo(Destination.BookCollection(collection.id)) }
+      viewModel.onBookLongClick(collection.id)
+      verify(exactly = 0) { navigator.goTo(Destination.BookActions(collection.id)) }
+      viewModel.onBookClick(ordinary.id)
+      verify { navigator.goTo(Destination.Playback(ordinary.id)) }
+    }
+  }
+
   private fun BookOverviewViewState.currentBook(bookId: BookId): BookOverviewItemViewState {
     return books.getValue(BookOverviewCategory.CURRENT).getValue(bookId).value
   }
@@ -471,6 +509,7 @@ class BookOverviewViewModelTest {
     currentBookId: BookId? = null,
     scanning: Flow<Boolean> = MutableStateFlow(false),
     survey: Survey = survey(),
+    collections: List<BookCollection> = emptyList(),
   ): BookOverviewViewModel {
     return BookOverviewViewModel(
       repo = mockk<BookRepository> {
@@ -501,6 +540,7 @@ class BookOverviewViewModelTest {
       audiobookFolders = audiobookFolders,
       emptyLibraryTracker = emptyLibraryTracker,
       survey = survey,
+      collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(collections)),
     )
   }
 

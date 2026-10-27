@@ -230,6 +230,7 @@
     <string name="library.category.completed.title">Ολοκληρωμένα</string>
     <string name="library.category.current.title">Τρέχοντα</string>
     <string name="library.category.not_started.title">Μη διαβασμένα</string>
+    <string name="library.collection">Συλλογή</string>
     <string name="library.continue_listening">Συνέχεια ακρόασης</string>
     <string name="library.empty.add_first_book">Ας προσθέσουμε το φάκελο των ηχητικών βιβλίων για να αρχίσετε την ακρόαση!</string>
     <string name="library.empty.title">Δεν βρέθηκαν ηχητικά βιβλία</string>
