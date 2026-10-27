@@ -5,9 +5,11 @@ package voice.features.playbackScreen.view
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
@@ -59,13 +61,16 @@ internal fun BookProgress(
       progress = progress,
     )
     Spacer(Modifier.height(6.dp))
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    FlowRow(
+      modifier = Modifier.fillMaxWidth(),
+      horizontalArrangement = Arrangement.SpaceBetween,
+      verticalArrangement = Arrangement.spacedBy(2.dp),
+    ) {
       Text(
         text = stringResource(R.string.playback_book_progress_read, percent),
         style = MaterialTheme.typography.labelLargeEmphasized.copy(fontFeatureSettings = "tnum"),
         color = colors.primary,
       )
-      Spacer(Modifier.weight(1F))
       val remainingText = formatTime(remaining.inWholeMilliseconds)
       Text(
         text = if (viewState.playbackSpeed in 0.99F..1.01F) {

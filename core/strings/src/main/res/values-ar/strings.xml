@@ -540,4 +540,19 @@
     <string name="widget.shelf.play">تشغيل %1$s</string>
     <string name="widget.shelf.title">متابعة الاستماع</string>
     <string name="widget.sleep_timer.stops_at">يتوقف الساعة %1$s</string>
+    <string name="grouping.title">تجميع المجلدات</string>
+    <string name="grouping.help">يمكنك اختيار مجلد من مكتبة بالوضع التلقائي. تحتفظ المجموعة بكل مجلد فرعي مباشر ككتاب منفصل. تبقى الملفات الصوتية في مكانها.</string>
+    <string name="grouping.one_book">كتاب واحد</string>
+    <string name="grouping.empty">لإتاحة تغيير التجميع، يمكنك إضافة مجلد بالوضع التلقائي.</string>
+    <string name="grouping.saved">حُفظ التجميع. جارٍ تحديث مكتبتك…</string>
+    <string name="backup.title">نسخة احتياطية للاستماع</string>
+    <string name="backup.export">تصدير التقدم والعلامات المرجعية</string>
+    <string name="backup.import">استيراد التقدم والعلامات المرجعية</string>
+    <string name="backup.help">تلزم إضافة الملفات الصوتية نفسها قبل الاستيراد على هاتف آخر. لا تتضمن النسخة الاحتياطية الملفات الصوتية.</string>
+    <string name="backup.review">الكتب المطابقة: %1$d؛ المتجاهلة: %2$d. يحل الاستيراد محل مواضع الاستماع لهذه الكتب ويدمج العلامات المرجعية.</string>
+    <string name="backup.confirm">استيراد</string>
+    <string name="backup.saved">حُفظت النسخة الاحتياطية</string>
+    <string name="backup.restored">الكتب المستوردة: %1$d؛ المتجاهلة: %2$d</string>
+    <string name="backup.error">تعذّرت قراءة هذه النسخة الاحتياطية أو كتابتها.</string>
+    <string name="collection.next">التالي في هذه المجموعة</string>
 </resources>

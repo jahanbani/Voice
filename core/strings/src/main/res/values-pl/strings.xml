@@ -504,4 +504,19 @@
     <string name="widget.shelf.play">Odtwórz %1$s</string>
     <string name="widget.shelf.title">Słuchaj dalej</string>
     <string name="widget.sleep_timer.stops_at">Zatrzyma się o %1$s</string>
+    <string name="grouping.title">Grupowanie folderów</string>
+    <string name="grouping.help">Wybierz folder w bibliotece z trybem „Automatycznie”. W kolekcji każdy bezpośredni podfolder jest osobną książką. Pliki dźwiękowe pozostają na swoim miejscu.</string>
+    <string name="grouping.one_book">Jedna książka</string>
+    <string name="grouping.empty">Aby zmienić grupowanie, dodaj folder w trybie „Automatycznie”.</string>
+    <string name="grouping.saved">Grupowanie zapisane. Aktualizujemy twoją bibliotekę…</string>
+    <string name="backup.title">Kopia danych słuchania</string>
+    <string name="backup.export">Eksportuj postęp i zakładki</string>
+    <string name="backup.import">Importuj postęp i zakładki</string>
+    <string name="backup.help">Przed importem na innym telefonie dodaj te same pliki dźwiękowe. Kopia nie zawiera plików dźwiękowych.</string>
+    <string name="backup.review">Pasujące książki: %1$d; pominięte: %2$d. Import zastąpi ich pozycje słuchania i scali zakładki.</string>
+    <string name="backup.confirm">Importuj</string>
+    <string name="backup.saved">Kopia zapisana</string>
+    <string name="backup.restored">Zaimportowane książki: %1$d; pominięte: %2$d</string>
+    <string name="backup.error">Nie udało się odczytać lub zapisać tej kopii.</string>
+    <string name="collection.next">Następna w tej kolekcji</string>
 </resources>

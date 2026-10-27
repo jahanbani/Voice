@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Esita %1$s</string>
     <string name="widget.shelf.title">Jätka kuulamist</string>
     <string name="widget.sleep_timer.stops_at">Peatub kell %1$s</string>
+    <string name="grouping.title">Kaustade rühmitamine</string>
+    <string name="grouping.help">Vali kaust automaatses kogus. Kogumikus jääb iga vahetu alamkaust eraldi raamatuks. Helifailid jäävad oma kohale.</string>
+    <string name="grouping.one_book">Üks raamat</string>
+    <string name="grouping.empty">Lisa kaust automaatses režiimis, et muuta selle rühmitamist.</string>
+    <string name="grouping.saved">Rühmitus salvestatud. Kogu värskendatakse…</string>
+    <string name="backup.title">Kuulamise varukoopia</string>
+    <string name="backup.export">Ekspordi edenemine ja järjehoidjad</string>
+    <string name="backup.import">Impordi edenemine ja järjehoidjad</string>
+    <string name="backup.help">Enne teises telefonis importimist lisa samad helifailid. Helifaile varukoopias pole.</string>
+    <string name="backup.review">Sobivaid raamatuid: %1$d; vahele jäetud: %2$d. Import asendab nende kuulamiskohad ja ühendab järjehoidjad.</string>
+    <string name="backup.confirm">Impordi</string>
+    <string name="backup.saved">Varukoopia salvestatud</string>
+    <string name="backup.restored">Imporditud raamatuid: %1$d; vahele jäetud: %2$d</string>
+    <string name="backup.error">Seda varukoopiat ei saanud lugeda ega kirjutada.</string>
+    <string name="collection.next">Järgmine selles kogumikus</string>
 </resources>

@@ -268,6 +268,10 @@ class SettingsViewModel(
     navigator.goTo(Destination.FolderPicker)
   }
 
+  override fun openFolderGrouping() {
+    navigator.goTo(Destination.FolderGrouping)
+  }
+
   override fun openAudiobookshelf() {
     mainScope.launch {
       navigator.goTo(

@@ -11,6 +11,11 @@ import voice.core.data.folders.FolderType
 sealed interface Destination {
 
   @Serializable
+  data object FolderGrouping : Compose {
+    override val trackingName: String get() = "FolderGrouping"
+  }
+
+  @Serializable
   data class BookCollection(val collectionId: BookId) : Compose {
     override val trackingName: String get() = "BookCollection"
   }

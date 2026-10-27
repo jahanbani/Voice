@@ -1,15 +1,22 @@
 package voice.features.playbackScreen.view
 
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -24,6 +31,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import voice.core.strings.R as StringsR
 
 @Composable
 internal fun BookPlayView(
@@ -47,6 +55,7 @@ internal fun BookPlayView(
   onJumpBack: (id: Long) -> Unit,
   onJumpBackExpire: (id: Long) -> Unit,
   snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
+  onNextCollectionBookClick: (BookId) -> Unit = {},
 ) {
   val clock = rememberAnimationClock(running = viewState.playing)
   BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -58,6 +67,19 @@ internal fun BookPlayView(
       modifier = Modifier.fillMaxSize(),
     )
     Scaffold(
+      bottomBar = {
+        viewState.nextCollectionBookId?.let { nextId ->
+          Button(
+            onClick = { onNextCollectionBookClick(nextId) },
+            modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 8.dp),
+          ) {
+            Column {
+              Text(stringResource(StringsR.string.collection_next))
+              Text(viewState.nextCollectionBookName.orEmpty(), style = MaterialTheme.typography.bodySmall)
+            }
+          }
+        }
+      },
       containerColor = Color.Transparent,
       contentColor = MaterialTheme.colorScheme.onSurface,
       snackbarHost = {
@@ -136,6 +158,14 @@ private fun BookPlayPreview(
   }
 }
 
+@Preview(name = "Next series large", fontScale = 2F)
+@Preview(name = "Next series RTL", locale = "ar")
+@Preview(name = "Next series landscape", widthDp = 840, heightDp = 360)
+@Composable
+private fun NextCollectionBookPreview() {
+  BookPlayPreview(BookPlayViewStatePreviewProvider().values.last())
+}
+
 private class BookPlayViewStatePreviewProvider : PreviewParameterProvider<BookPlayViewState> {
   override val values = sequence {
     val initial = BookPlayViewState(
@@ -181,6 +211,18 @@ private class BookPlayViewStatePreviewProvider : PreviewParameterProvider<BookPl
         chapterNumber = 1,
         chapterSegments = listOf(1F),
         jumpBack = null,
+      ),
+    )
+    yield(
+      initial.copy(
+        playing = false,
+        bookPlayedTime = initial.bookDuration,
+        playedTime = initial.duration,
+        chapterNumber = initial.chapterCount,
+        chapterName = "Finale",
+        jumpBack = null,
+        nextCollectionBookId = BookId("next"),
+        nextCollectionBookName = "Series 2 – More adventures",
       ),
     )
   }

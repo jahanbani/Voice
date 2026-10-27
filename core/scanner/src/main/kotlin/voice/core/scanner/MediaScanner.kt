@@ -1,9 +1,11 @@
 package voice.core.scanner
 
 import dev.zacsweers.metro.Inject
+import kotlinx.coroutines.flow.first
 import voice.core.data.BookId
 import voice.core.data.audioFileCount
 import voice.core.data.fitIntoOneBook
+import voice.core.data.folders.FolderGroupingStore
 import voice.core.data.folders.FolderType
 import voice.core.data.folders.discoverLibrary
 import voice.core.data.isAudioFile
@@ -24,10 +26,12 @@ internal class MediaScanner(
   private val progressCarryOver: ProgressCarryOver,
   private val chapterRepo: ChapterRepo,
   private val collectionsStore: BookCollectionsStore,
+  private val groupingStore: FolderGroupingStore,
 ) {
 
   suspend fun scan(folders: Map<FolderType, List<CachedDocumentFile>>) {
-    val automaticLibraries = folders[FolderType.Automatic].orEmpty().map { it.discoverLibrary() }
+    val grouping = groupingStore.data.first()
+    val automaticLibraries = folders[FolderType.Automatic].orEmpty().map { it.discoverLibrary(grouping) }
     val files = folders.flatMap { (folderType, files) ->
       when (folderType) {
         FolderType.SingleFile, FolderType.SingleFolder -> {

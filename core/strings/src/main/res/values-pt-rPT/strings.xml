@@ -486,4 +486,19 @@
     <string name="widget.shelf.play">Reproduzir %1$s</string>
     <string name="widget.shelf.title">Continuar a ouvir</string>
     <string name="widget.sleep_timer.stops_at">Desliga às %1$s</string>
+    <string name="grouping.title">Agrupamento de pastas</string>
+    <string name="grouping.help">Escolha uma pasta de uma biblioteca no modo Automático. Uma coleção mantém cada subpasta direta como um livro separado. Os ficheiros de áudio ficam onde estão.</string>
+    <string name="grouping.one_book">Um livro</string>
+    <string name="grouping.empty">Adicione uma pasta no modo Automático para alterar o seu agrupamento.</string>
+    <string name="grouping.saved">Agrupamento guardado. A atualizar a biblioteca…</string>
+    <string name="backup.title">Cópia de segurança da escuta</string>
+    <string name="backup.export">Exportar progresso e marcadores</string>
+    <string name="backup.import">Importar progresso e marcadores</string>
+    <string name="backup.help">Adicione os mesmos ficheiros de áudio antes de importar noutro telemóvel. Os ficheiros de áudio não estão incluídos.</string>
+    <string name="backup.review">Livros correspondentes: %1$d; ignorados: %2$d. A importação substitui as suas posições de escuta e combina os marcadores.</string>
+    <string name="backup.confirm">Importar</string>
+    <string name="backup.saved">Cópia de segurança guardada</string>
+    <string name="backup.restored">Livros importados: %1$d; ignorados: %2$d</string>
+    <string name="backup.error">Não foi possível ler ou escrever esta cópia de segurança.</string>
+    <string name="collection.next">Seguinte nesta coleção</string>
 </resources>

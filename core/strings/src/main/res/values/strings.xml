@@ -836,4 +836,34 @@
     <string name="widget.shelf.title">Continue listening</string>
     <!-- Shown on the Now playing widget while the sleep timer runs, with the clock time playback stops, like "Stops at 23:10". -->
     <string name="widget.sleep_timer.stops_at">Stops at %1$s</string>
+    <!-- Screen for overriding automatic folder discovery without changing audio files. -->
+    <string name="grouping.title">Folder grouping</string>
+    <!-- Instructions for the folder browser and its one-book or collection controls. -->
+    <string name="grouping.help">Choose a folder in an Automatic library. A collection keeps each immediate subfolder as a separate book. Audio files stay where they are.</string>
+    <!-- Folder grouping option: combine all audio in this folder and its descendants. -->
+    <string name="grouping.one_book">One book</string>
+    <!-- Empty folder grouping browser, which only lists roots added in Automatic mode. -->
+    <string name="grouping.empty">Add a folder in Automatic mode to change its grouping.</string>
+    <!-- Snackbar after saving a grouping choice and starting a rescan. -->
+    <string name="grouping.saved">Grouping saved. Updating your library…</string>
+    <!-- Settings section for portable listening positions and bookmarks, without audio files. -->
+    <string name="backup.title">Listening backup</string>
+    <!-- Opens the system file picker to save a JSON backup. -->
+    <string name="backup.export">Export progress and bookmarks</string>
+    <!-- Opens the system file picker to load a JSON backup. -->
+    <string name="backup.import">Import progress and bookmarks</string>
+    <!-- Backup instructions, shown before choosing a file. -->
+    <string name="backup.help">Add the same audio files before importing on another phone. Audio files are not included.</string>
+    <!-- Import review: matching books, skipped books, and what applying the backup changes. -->
+    <string name="backup.review">Books matched: %1$d; skipped: %2$d. Import replaces their listening positions and merges bookmarks.</string>
+    <!-- Button confirming the reviewed backup import. -->
+    <string name="backup.confirm">Import</string>
+    <!-- Snackbar after writing a backup successfully. -->
+    <string name="backup.saved">Backup saved</string>
+    <!-- Snackbar after import, with applied and skipped book counts. -->
+    <string name="backup.restored">Books imported: %1$d; skipped: %2$d</string>
+    <!-- Failure reading, validating, or writing a listening backup. -->
+    <string name="backup.error">Could not read or write this backup.</string>
+    <!-- Player button shown when a collection member ends, followed by the next book title. -->
+    <string name="collection.next">Next in this collection</string>
 </resources>

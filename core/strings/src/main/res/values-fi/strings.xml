@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Toista %1$s</string>
     <string name="widget.shelf.title">Jatka kuuntelua</string>
     <string name="widget.sleep_timer.stops_at">Pysähtyy klo %1$s</string>
+    <string name="grouping.title">Kansioiden ryhmittely</string>
+    <string name="grouping.help">Valitse kansio automaattisesta kirjastosta. Kokoelmassa jokainen välitön alikansio on erillinen kirja. Äänitiedostot pysyvät paikoillaan.</string>
+    <string name="grouping.one_book">Yksi kirja</string>
+    <string name="grouping.empty">Lisää kansio automaattisessa tilassa, jotta voit muuttaa sen ryhmittelyä.</string>
+    <string name="grouping.saved">Ryhmittely tallennettu. Kirjastoa päivitetään…</string>
+    <string name="backup.title">Kuuntelun varmuuskopio</string>
+    <string name="backup.export">Vie edistyminen ja kirjanmerkit</string>
+    <string name="backup.import">Tuo edistyminen ja kirjanmerkit</string>
+    <string name="backup.help">Lisää samat äänitiedostot ennen tuontia toisella puhelimella. Äänitiedostot eivät sisälly varmuuskopioon.</string>
+    <string name="backup.review">Tunnistettuja kirjoja: %1$d; ohitettuja: %2$d. Tuonti korvaa niiden kuuntelukohdat ja yhdistää kirjanmerkit.</string>
+    <string name="backup.confirm">Tuo</string>
+    <string name="backup.saved">Varmuuskopio tallennettu</string>
+    <string name="backup.restored">Tuotuja kirjoja: %1$d; ohitettuja: %2$d</string>
+    <string name="backup.error">Tätä varmuuskopiota ei voitu lukea tai kirjoittaa.</string>
+    <string name="collection.next">Seuraava tässä kokoelmassa</string>
 </resources>

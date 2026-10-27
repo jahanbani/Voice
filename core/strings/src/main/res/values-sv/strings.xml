@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Spela %1$s</string>
     <string name="widget.shelf.title">Fortsätt lyssna</string>
     <string name="widget.sleep_timer.stops_at">Stoppar kl. %1$s</string>
+    <string name="grouping.title">Mappgruppering</string>
+    <string name="grouping.help">Välj en mapp i ett automatiskt bibliotek. En samling behåller varje direkt undermapp som en egen bok. Ljudfilerna stannar där de är.</string>
+    <string name="grouping.one_book">En bok</string>
+    <string name="grouping.empty">Lägg till en mapp i automatiskt läge för att ändra grupperingen.</string>
+    <string name="grouping.saved">Grupperingen sparad. Uppdaterar ditt bibliotek…</string>
+    <string name="backup.title">Säkerhetskopia av lyssning</string>
+    <string name="backup.export">Exportera förlopp och bokmärken</string>
+    <string name="backup.import">Importera förlopp och bokmärken</string>
+    <string name="backup.help">Lägg till samma ljudfiler innan du importerar på en annan telefon. Ljudfiler ingår inte.</string>
+    <string name="backup.review">Matchade böcker: %1$d; överhoppade: %2$d. Importen ersätter deras lyssningspositioner och slår ihop bokmärken.</string>
+    <string name="backup.confirm">Importera</string>
+    <string name="backup.saved">Säkerhetskopian sparad</string>
+    <string name="backup.restored">Importerade böcker: %1$d; överhoppade: %2$d</string>
+    <string name="backup.error">Det gick inte att läsa eller skriva säkerhetskopian.</string>
+    <string name="collection.next">Nästa i den här samlingen</string>
 </resources>

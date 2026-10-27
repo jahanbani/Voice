@@ -40,6 +40,31 @@ import kotlin.time.Duration.Companion.seconds
 class MediaScannerTest {
 
   @Test
+  fun `manual grouping can split and combine irregular folders without losing the current position`() = test {
+    val library = folder("library")
+    val story = File(library, "Story")
+    val firstFolder = File(story, "Beginning")
+    val lastFolder = File(story, "Ending")
+    audioFile(firstFolder, "01.mp3")
+    val last = audioFile(lastFolder, "01.mp3")
+    groupingStore.updateData { mapOf(story.toUri().toString() to voice.core.data.folders.FolderGrouping.OneBook) }
+    scan(FolderType.Automatic, library)
+    currentBookStore.updateData { BookId(story.toUri()) }
+    play(BookId(story.toUri()), last, 600, Instant.ofEpochSecond(10))
+    groupingStore.updateData { mapOf(story.toUri().toString() to voice.core.data.folders.FolderGrouping.Collection) }
+    scan(FolderType.Automatic, library)
+    assertEquals(600L, bookContentRepo.get(BookId(lastFolder.toUri()))!!.positionInChapter)
+    assertEquals(BookId(lastFolder.toUri()), currentBookStore.data.first())
+    assertEquals(1, collectionsStore.data.first().size)
+    play(BookId(lastFolder.toUri()), last, 800, Instant.ofEpochSecond(20))
+    groupingStore.updateData { mapOf(story.toUri().toString() to voice.core.data.folders.FolderGrouping.OneBook) }
+    scan(FolderType.Automatic, library)
+    assertEquals(800L, bookContentRepo.get(BookId(story.toUri()))!!.positionInChapter)
+    assertEquals(BookId(story.toUri()), currentBookStore.data.first())
+    assertEquals(emptyList(), collectionsStore.data.first())
+  }
+
+  @Test
   fun `automatic discovery scans nested books and keeps series in chapter order`() = test {
     val library = folder("audiobooks")
     val novel = File(library, "Collection/Author/Novel")
@@ -716,6 +741,7 @@ class MediaScannerTest {
     private val scannedRepo = ScannedBooksRecordingRepo(bookContentRepo)
     val scannedBooks: List<BookId> get() = scannedRepo.scannedBooks
     val collectionsStore = voice.core.data.store.BookCollectionsStore(MemoryDataStore(emptyList()))
+    val groupingStore = voice.core.data.folders.FolderGroupingStore(MemoryDataStore(emptyMap()))
     private val scanner = MediaScanner(
       contentRepo = scannedRepo,
       chapterParser = ChapterParser(
@@ -736,6 +762,7 @@ class MediaScannerTest {
       ),
       chapterRepo = chapterRepo,
       collectionsStore = collectionsStore,
+      groupingStore = groupingStore,
     )
 
     val bookRepo = BookRepositoryImpl(chapterRepo, bookContentRepo)

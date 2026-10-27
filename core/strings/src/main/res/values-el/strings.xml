@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Αναπαραγωγή: %1$s</string>
     <string name="widget.shelf.title">Συνέχεια ακρόασης</string>
     <string name="widget.sleep_timer.stops_at">Σταματά στις %1$s</string>
+    <string name="grouping.title">Ομαδοποίηση φακέλων</string>
+    <string name="grouping.help">Επιλέξτε έναν φάκελο σε βιβλιοθήκη με λειτουργία «Αυτόματα». Σε μια συλλογή, κάθε άμεσος υποφάκελος γίνεται ξεχωριστό βιβλίο. Τα αρχεία ήχου παραμένουν στη θέση τους.</string>
+    <string name="grouping.one_book">Ένα βιβλίο</string>
+    <string name="grouping.empty">Προσθέστε έναν φάκελο με τη λειτουργία «Αυτόματα» για να αλλάξετε την ομαδοποίησή του.</string>
+    <string name="grouping.saved">Η ομαδοποίηση αποθηκεύτηκε. Ενημέρωση της βιβλιοθήκης σας…</string>
+    <string name="backup.title">Αντίγραφο ασφαλείας ακρόασης</string>
+    <string name="backup.export">Εξαγωγή προόδου και σελιδοδεικτών</string>
+    <string name="backup.import">Εισαγωγή προόδου και σελιδοδεικτών</string>
+    <string name="backup.help">Προσθέστε τα ίδια αρχεία ήχου πριν από την εισαγωγή σε άλλο τηλέφωνο. Τα αρχεία ήχου δεν περιλαμβάνονται.</string>
+    <string name="backup.review">Βιβλία που βρέθηκαν: %1$d· παραλείπονται: %2$d. Η εισαγωγή αντικαθιστά τις θέσεις ακρόασής τους και συγχωνεύει τους σελιδοδείκτες.</string>
+    <string name="backup.confirm">Εισαγωγή</string>
+    <string name="backup.saved">Το αντίγραφο ασφαλείας αποθηκεύτηκε</string>
+    <string name="backup.restored">Βιβλία που εισήχθησαν: %1$d· παραλείφθηκαν: %2$d</string>
+    <string name="backup.error">Δεν ήταν δυνατή η ανάγνωση ή η εγγραφή αυτού του αντιγράφου ασφαλείας.</string>
+    <string name="collection.next">Επόμενο σε αυτή τη συλλογή</string>
 </resources>

@@ -73,6 +73,7 @@ private fun SettingsPreview() {
     Settings(
       SettingsViewState.preview(),
       SettingsListener.noop(),
+      backup = { BackupActions(false, {}, {}, it) },
     )
   }
 }
@@ -83,6 +84,7 @@ private fun Settings(
   listener: SettingsListener,
   confetti: ConfettiState = rememberConfettiState(),
   snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
+  backup: @Composable (Modifier) -> Unit = {},
 ) {
   val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
   val clock = rememberAnimationClock(running = true)
@@ -117,7 +119,7 @@ private fun Settings(
         horizontalAlignment = Alignment.CenterHorizontally,
       ) {
         if (viewState != null && entrance != null) {
-          sections(viewState, listener, confetti, entrance)
+          sections(viewState, listener, confetti, entrance, backup)
         }
       }
     }
@@ -129,6 +131,7 @@ private fun LazyListScope.sections(
   listener: SettingsListener,
   confetti: ConfettiState,
   entrance: EntranceState,
+  backup: @Composable (Modifier) -> Unit,
 ) {
   var index = 0
   fun section(
@@ -157,8 +160,10 @@ private fun LazyListScope.sections(
       onFoldersClick = listener::openFolderPicker,
       onAudiobookshelfClick = listener::openAudiobookshelf,
       onUseGridChange = listener::setUseGrid,
+      onGroupingClick = listener::openFolderGrouping,
     )
   }
+  section("backup", backup)
   if (viewState.showSupportDevelopment) {
     section("support") { modifier ->
       SupportCard(
@@ -299,5 +304,5 @@ fun Settings() {
       }
     }
   }
-  Settings(viewState, viewModel, confetti, snackbarHostState)
+  Settings(viewState, viewModel, confetti, snackbarHostState, backup = { BackupSection(snackbarHostState, it) })
 }

@@ -450,4 +450,19 @@
     <string name="widget.shelf.play">%1$s を再生</string>
     <string name="widget.shelf.title">続きを聴く</string>
     <string name="widget.sleep_timer.stops_at">%1$s に停止します</string>
+    <string name="grouping.title">フォルダーのまとめ方</string>
+    <string name="grouping.help">自動モードのライブラリからフォルダーを選んでください。コレクションでは、直下の各サブフォルダーを別々の本として扱います。音声ファイルは移動しません。</string>
+    <string name="grouping.one_book">1 冊の本</string>
+    <string name="grouping.empty">まとめ方を変更するには、自動モードでフォルダーを追加してください。</string>
+    <string name="grouping.saved">まとめ方を保存しました。ライブラリを更新しています…</string>
+    <string name="backup.title">再生情報のバックアップ</string>
+    <string name="backup.export">再生位置とブックマークを書き出す</string>
+    <string name="backup.import">再生位置とブックマークを読み込む</string>
+    <string name="backup.help">別のスマートフォンで読み込む前に、同じ音声ファイルを追加してください。音声ファイルはバックアップに含まれません。</string>
+    <string name="backup.review">一致した本：%1$d 冊、スキップする本：%2$d 冊。読み込むと、一致した本の再生位置を置き換え、ブックマークを統合します。</string>
+    <string name="backup.confirm">読み込む</string>
+    <string name="backup.saved">バックアップを保存しました</string>
+    <string name="backup.restored">読み込んだ本：%1$d 冊、スキップした本：%2$d 冊</string>
+    <string name="backup.error">このバックアップを読み書きできませんでした。</string>
+    <string name="collection.next">このコレクションの次の本</string>
 </resources>

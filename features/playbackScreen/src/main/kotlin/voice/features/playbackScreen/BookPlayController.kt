@@ -87,6 +87,7 @@ fun BookPlayScreen(bookId: BookId) {
       onJumpBack = viewModel::onJumpBackClick,
       onJumpBackExpire = viewModel::onJumpBackExpire,
       snackbarHostState = snackbarHostState,
+      onNextCollectionBookClick = viewModel::onNextCollectionBookClick,
     )
     when (dialogState) {
       null -> {}

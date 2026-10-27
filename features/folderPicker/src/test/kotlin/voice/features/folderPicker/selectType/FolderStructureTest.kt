@@ -113,9 +113,9 @@ class FolderStructureTest {
 
     assertEquals(FolderMode.Automatic, folder.guessFolderMode())
     val books = folder.books(FolderMode.Automatic).map { it.book }.associateBy { it.name }
-    assertEquals(setOf("Loose", "A Book", "Emma", "Persuasion", "Detective", "Standalone"), books.keys)
-    assertEquals(2, books.getValue("Detective").partCount)
-    assertEquals(2, books.getValue("Detective").fileCount)
+    assertEquals(setOf("Loose", "A Book", "Emma", "Persuasion", "Series 1", "Series 2", "Standalone"), books.keys)
+    assertEquals(1, books.getValue("Series 1").fileCount)
+    assertEquals(1, books.getValue("Series 2").fileCount)
   }
 
   @Test
@@ -132,7 +132,7 @@ class FolderStructureTest {
     )
 
     assertEquals(
-      listOf("Book", "Detective", "Drama", "Other"),
+      listOf("Book", "Drama", "Other", "Series 1", "Series 8 - More adventures"),
       folder.books(FolderMode.Automatic).map { it.book.name }.sorted(),
     )
   }

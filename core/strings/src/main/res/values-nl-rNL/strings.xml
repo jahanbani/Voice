@@ -468,4 +468,19 @@
     <string name="widget.shelf.play">Speel %1$s af</string>
     <string name="widget.shelf.title">Verder luisteren</string>
     <string name="widget.sleep_timer.stops_at">Stopt om %1$s</string>
+    <string name="grouping.title">Mappen groeperen</string>
+    <string name="grouping.help">Kies een map in een automatische bibliotheek. In een verzameling blijft elke directe submap een apart boek. Audiobestanden blijven op hun plek.</string>
+    <string name="grouping.one_book">Eén boek</string>
+    <string name="grouping.empty">Voeg een map toe in de automatische modus om de groepering te wijzigen.</string>
+    <string name="grouping.saved">Groepering opgeslagen. Je bibliotheek wordt bijgewerkt…</string>
+    <string name="backup.title">Luisterback-up</string>
+    <string name="backup.export">Voortgang en bladwijzers exporteren</string>
+    <string name="backup.import">Voortgang en bladwijzers importeren</string>
+    <string name="backup.help">Voeg dezelfde audiobestanden toe voordat je op een andere telefoon importeert. Audiobestanden worden niet meegenomen.</string>
+    <string name="backup.review">Herkende boeken: %1$d; overgeslagen: %2$d. Importeren vervangt hun luisterposities en voegt bladwijzers samen.</string>
+    <string name="backup.confirm">Importeren</string>
+    <string name="backup.saved">Back-up opgeslagen</string>
+    <string name="backup.restored">Geïmporteerde boeken: %1$d; overgeslagen: %2$d</string>
+    <string name="backup.error">Deze back-up kon niet worden gelezen of geschreven.</string>
+    <string name="collection.next">Volgende in deze verzameling</string>
 </resources>

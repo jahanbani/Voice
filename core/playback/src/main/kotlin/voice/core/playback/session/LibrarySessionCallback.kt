@@ -36,6 +36,7 @@ import voice.core.logging.api.Logger
 import voice.core.playback.LockScreenSliderStore
 import voice.core.playback.history.CommandSourceResolver
 import voice.core.playback.player.VoicePlayer
+import voice.core.playback.playstate.PositionUpdater
 import voice.core.playback.session.search.BookSearchHandler
 import voice.core.playback.session.search.BookSearchParser
 
@@ -51,6 +52,7 @@ class LibrarySessionCallback(
   private val commandSourceResolver: CommandSourceResolver,
   private val context: Context,
   private val lockScreenSliderStore: LockScreenSliderStore,
+  private val positionUpdater: PositionUpdater,
 ) : MediaLibrarySession.Callback {
 
   private var notificationCommandsJob: Job? = null
@@ -265,6 +267,12 @@ class LibrarySessionCallback(
     val command = CustomCommand.parse(customCommand, args)
       ?: return super.onCustomCommand(session, controller, customCommand, args)
     when (command) {
+      CustomCommand.PauseForLibraryChange -> return scope.future {
+        player.pause()
+        positionUpdater.flushPositionNow()
+        player.clearMediaItems()
+        SessionResult(SessionResult.RESULT_SUCCESS)
+      }
       CustomCommand.ForceSeekToNext -> {
         player.forceSeekToNext()
       }

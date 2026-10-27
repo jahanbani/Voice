@@ -504,4 +504,19 @@
     <string name="widget.shelf.play">Відтворити %1$s</string>
     <string name="widget.shelf.title">Продовжити слухання</string>
     <string name="widget.sleep_timer.stops_at">Зупиниться о %1$s</string>
+    <string name="grouping.title">Групування папок</string>
+    <string name="grouping.help">Виберіть папку в бібліотеці з режимом «Автоматично». У колекції кожна вкладена папка першого рівня стає окремою книгою. Аудіофайли залишаються на своїх місцях.</string>
+    <string name="grouping.one_book">Одна книга</string>
+    <string name="grouping.empty">Додайте папку в режимі «Автоматично», щоб змінити її групування.</string>
+    <string name="grouping.saved">Групування збережено. Оновлюємо вашу бібліотеку…</string>
+    <string name="backup.title">Резервна копія слухання</string>
+    <string name="backup.export">Експорт прогресу й закладок</string>
+    <string name="backup.import">Імпорт прогресу й закладок</string>
+    <string name="backup.help">Перед імпортом на іншому телефоні додайте ті самі аудіофайли. Аудіофайли не входять до резервної копії.</string>
+    <string name="backup.review">Знайдено книг: %1$d; пропущено: %2$d. Імпорт замінить їхні позиції слухання та об’єднає закладки.</string>
+    <string name="backup.confirm">Імпортувати</string>
+    <string name="backup.saved">Резервну копію збережено</string>
+    <string name="backup.restored">Імпортовано книг: %1$d; пропущено: %2$d</string>
+    <string name="backup.error">Не вдалося прочитати або записати цю резервну копію.</string>
+    <string name="collection.next">Далі в цій колекції</string>
 </resources>

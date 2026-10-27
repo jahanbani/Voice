@@ -1,6 +1,7 @@
 package voice.features.playbackScreen
 
 import androidx.compose.runtime.Immutable
+import voice.core.data.BookId
 import voice.core.playback.misc.Decibel
 import kotlin.time.Duration
 
@@ -27,6 +28,8 @@ data class BookPlayViewState(
   val jumpBack: JumpBackViewState?,
   /** A server book that isn't downloaded while the server can't be reached. */
   val unavailable: Boolean = false,
+  val nextCollectionBookId: BookId? = null,
+  val nextCollectionBookName: String? = null,
 ) {
 
   /**

@@ -9,6 +9,7 @@ import androidx.media3.session.SessionError
 import androidx.media3.test.utils.TestExoPlayerBuilder
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -39,10 +40,12 @@ class LibrarySessionCallbackTest {
     every { isMediaNotificationController(any()) } returns true
   }
   private val notification = controller(context.packageName, context.applicationInfo.uid)
+  private val voicePlayer = mockk<voice.core.playback.player.VoicePlayer>(relaxed = true)
+  private val positionUpdater = mockk<voice.core.playback.playstate.PositionUpdater>(relaxUnitFun = true)
   private val callback = LibrarySessionCallback(
     mediaItemProvider = mockk(),
     scope = scope.backgroundScope,
-    player = mockk(relaxed = true),
+    player = voicePlayer,
     bookSearchParser = BookSearchParser(),
     bookSearchHandler = mockk(),
     currentBookStoreId = CurrentBookStore(MemoryDataStore<BookId?>(null)),
@@ -50,8 +53,27 @@ class LibrarySessionCallbackTest {
     commandSourceResolver = mockk(relaxed = true),
     context = context,
     lockScreenSliderStore = LockScreenSliderStore(lockScreenSliderStore),
+    positionUpdater = positionUpdater,
   )
   private val customCommand = SessionCommand(CustomCommand.CUSTOM_COMMAND_ACTION, Bundle.EMPTY)
+
+  @Test
+  fun `library changes pause and flush progress before clearing the loaded queue`() = scope.runTest {
+    val args = Bundle().apply {
+      putString(
+        CustomCommand.CUSTOM_COMMAND_EXTRA,
+        kotlinx.serialization.json.Json.encodeToString(CustomCommand.serializer(), CustomCommand.PauseForLibraryChange),
+      )
+    }
+    val result = callback.onCustomCommand(session, notification, customCommand, args)
+    runCurrent()
+    assertEquals(androidx.media3.session.SessionResult.RESULT_SUCCESS, result.get().resultCode)
+    coVerifyOrder {
+      voicePlayer.pause()
+      positionUpdater.flushPositionNow()
+      voicePlayer.clearMediaItems()
+    }
+  }
 
   @After
   fun tearDown() {

@@ -450,4 +450,19 @@
     <string name="widget.shelf.play">播放《%1$s》</string>
     <string name="widget.shelf.title">继续收听</string>
     <string name="widget.sleep_timer.stops_at">将于 %1$s 停止</string>
+    <string name="grouping.title">文件夹分组</string>
+    <string name="grouping.help">请在自动模式的书库中选择一个文件夹。合集会将每个直属子文件夹作为独立的书籍。音频文件仍保留在原处。</string>
+    <string name="grouping.one_book">一本书</string>
+    <string name="grouping.empty">请以自动模式添加文件夹，以便更改分组方式。</string>
+    <string name="grouping.saved">已保存分组。正在更新您的书库…</string>
+    <string name="backup.title">收听备份</string>
+    <string name="backup.export">导出进度和书签</string>
+    <string name="backup.import">导入进度和书签</string>
+    <string name="backup.help">在另一部手机上导入之前，请先添加相同的音频文件。备份不包含音频文件。</string>
+    <string name="backup.review">匹配书籍：%1$d 本；跳过书籍：%2$d 本。导入会替换这些书的收听位置，并合并书签。</string>
+    <string name="backup.confirm">导入</string>
+    <string name="backup.saved">已保存备份</string>
+    <string name="backup.restored">导入书籍：%1$d 本；跳过书籍：%2$d 本</string>
+    <string name="backup.error">无法读取或写入此备份。</string>
+    <string name="collection.next">此合集的下一本</string>
 </resources>
